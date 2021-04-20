@@ -9,7 +9,7 @@ namespace MVCPersonList.Controllers
 {
     public class PeopleController : Controller
     {
-        public IActionResult Index()                // Normally shows all persons available
+        public IActionResult Index()                // Normally shows all persons available here
         {
             return View();
         }
@@ -29,8 +29,5 @@ namespace MVCPersonList.Controllers
             }
             return View(createPerson); // If a person is not properly created it will return back to the same view
         }
-
-
-
     }
 }

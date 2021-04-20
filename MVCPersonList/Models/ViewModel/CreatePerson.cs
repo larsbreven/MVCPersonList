@@ -13,16 +13,24 @@ namespace MVCPersonList.Models.ViewModel
         public string Name { get; set; }  
                
         [Required]                                      // Phone is required to type in when creating a person
+        [StringLength(25, MinimumLength = 2)]
         public string Phone { get; set; }
 
         [Required]                                      // City is required to type in when creating a person
+        [StringLength(100, MinimumLength = 2)]
         public string City { get; set; }
 
-        public List<String> NameList { get; set; }
+        [Required]                                      // Gender is required to type in when creating a person
+        [StringLength(5, MinimumLength = 1)]
+        public string Gender { get; set; }
+
+        
+        public List<String> GenderList { get; set; }
+
 
         public CreatePerson()
         {
-            NameList = new List<String>()
+            GenderList = new List<String>()
             {
             "Male",
             "Female",
