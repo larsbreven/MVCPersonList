@@ -27,7 +27,7 @@ namespace MVCPersonList.Controllers
             {
                 // code save person
             }
-            return View(createPerson); // If a person is not properly created it will return back to the same view
+            return View(createPerson);              // If a person is not properly created it will return back to the same view
         }
     }
 }
