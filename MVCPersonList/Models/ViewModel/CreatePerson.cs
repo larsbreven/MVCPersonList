@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;            // DataAnnotations added into the file
 using System.Linq;
@@ -10,31 +11,29 @@ namespace MVCPersonList.Models.ViewModel
     {
         [Required]                                      // Name is required to type in when creating a person
         [StringLength(100, MinimumLength = 2)]          // Maximum length of a string is 100 characters, 2 is minimum
-        public string Name { get; set; }  
-               
-        [Required]                                      // Phone is required to type in when creating a person
-        [StringLength(25, MinimumLength = 2)]
-        public string Phone { get; set; }
+        public string Name { get; set; }
 
         [Required]                                      // City is required to type in when creating a person
         [StringLength(100, MinimumLength = 2)]
         public string City { get; set; }
 
-        [Required]                                      // Gender is required to type in when creating a person
-        [StringLength(5, MinimumLength = 1)]
-        public string Gender { get; set; }
+        [Required]                                      // Phone is required to type in when creating a person
+        [StringLength(25, MinimumLength = 2)]
+        public string Phone { get; set; }
 
-        
-        public List<String> GenderList { get; set; }
+               
+        public List<String> CityList { get; set; }
 
 
         public CreatePerson()
         {
-            GenderList = new List<String>()
+            CityList = new List<String>()
             {
-            "Male",
-            "Female",
-            "Other"
+            "Alicante",
+            "Cincinati",
+            "Portland",
+            "São Paulo",
+            "Trollhättan"
             };
         }
     }

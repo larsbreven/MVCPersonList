@@ -5,27 +5,22 @@
 
 <h1>Create</h1>
 
-<form asp-action="Create" asp-controller="People" method="post">
+<form asp-action="Create" asp-controller="Persons" method="post">
 
-    <label asp-for="Gender"></label>
-    <select asp-for="Gender">
-        <option value="" disabled>Select a gender</option>
-        @foreach (string item in Model.GenderList)
+    <label asp-for="City"></label>
+    <select asp-for="City">
+        <option value="" disabled>Select a city</option>
+        @foreach (string item in Model.CityList)
         {
             <option value="@item">@item</option>
         }
     </select>
-    <span asp-validation-for="Gender"></span>
+    <span asp-validation-for="City"></span>
 
     <label asp-for="Name"></label>
     <input asp-for="Name" />
     <span asp-validation-for="Name"></span>
-
-
-    <label asp-for="City"></label>
-    <input asp-for="City" />
-    <span asp-validation-for="City"></span>
-
+        
     <label asp-for="Phone"></label>
     <input asp-for="Phone" />
     <span asp-validation-for="Phone"></span>

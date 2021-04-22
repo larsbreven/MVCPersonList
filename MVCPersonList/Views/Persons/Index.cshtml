@@ -1,0 +1,38 @@
+﻿@model PersonIndexViewModel 
+@{
+    ViewData["Title"] = "Person Index";
+}
+
+<h1>Index</h1>
+
+<a asp-action="Create">Create</a>
+
+<form asp-action="Index" method="post">
+    <label asp-for="FilterText"></label>
+    <input asp-for="FilterText" />
+    <input type="submit" value="Filter by city" />
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>City</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var item in Model.PersonList)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.City</td>
+            <td>@item.Phone</td>
+            <td><a asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+        </tr>    
+        }
+
+    </tbody>
+</table>
