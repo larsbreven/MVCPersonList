@@ -6,7 +6,7 @@ using MVCPersonList.Models.Data;
 
 namespace MVCPersonList.Models.Repo
 {
-    public class InMemoryPersonRepo : IPersonRepo
+    public class InMemoryPeopleRepo : IPeopleRepo
     {
         static List<Person> personList = new List<Person>();
         static int idCounter = 0;

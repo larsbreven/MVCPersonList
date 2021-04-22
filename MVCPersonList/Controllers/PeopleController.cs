@@ -9,10 +9,10 @@ using MVCPersonList.Models.ViewModel;
 
 namespace MVCPersonList.Controllers
 {
-    public class PersonsController : Controller
+    public class PeopleController : Controller
     {
 
-        IPersonService _personService = new PersonService();
+        IPeopleService _personService = new PersonService();
 
         [HttpGet]
         public IActionResult Index()                // Normally shows all persons available here

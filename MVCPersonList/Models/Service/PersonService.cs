@@ -8,13 +8,13 @@ using MVCPersonList.Models.ViewModel;
 
 namespace MVCPersonList.Models.Service
 {
-    public class PersonService : IPersonService
+    public class PersonService : IPeopleService
     {
-        IPersonRepo _personRepo;                             // Storage for person data
+        IPeopleRepo _personRepo;                             // Storage for person data
 
         public PersonService()
         {
-            _personRepo = new InMemoryPersonRepo();
+            _personRepo = new InMemoryPeopleRepo();
         }
 
         public Person Add(CreatePerson createPerson)        // Service will do the conversion

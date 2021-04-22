@@ -7,7 +7,7 @@ using MVCPersonList.Models.ViewModel;
 
 namespace MVCPersonList.Models.Service
 {
-    public interface IPersonService                 // Service will do the logic work, filter, sort and so on
+    public interface IPeopleService                 // Service will do the logic work, filter, sort and so on
     {
         Person Add(CreatePerson createPerson);      // "Create"
         PersonIndexViewModel All();                 // "Read", here is the conversion of a viewmodel to real data

@@ -6,7 +6,7 @@ using MVCPersonList.Models.Data;
 
 namespace MVCPersonList.Models.Repo
 {
-    public interface IPersonRepo
+    public interface IPeopleRepo
     {
                                             // Create, read, update or delete a person (C.R.U.D)
 
