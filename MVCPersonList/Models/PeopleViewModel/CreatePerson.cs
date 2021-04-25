@@ -30,7 +30,7 @@ namespace MVCPersonList.Models.ViewModel
             CityList = new List<String>()
             {
             "Alicante",
-            "Cincinati",
+            "Cincinnati",
             "Portland",
             "São Paulo",
             "Trollhättan"
