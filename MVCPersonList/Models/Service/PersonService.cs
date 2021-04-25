@@ -44,19 +44,19 @@ namespace MVCPersonList.Models.Service
             return _personRepo.Read(id);
         }
 
-        public List<Person> FindByCity(string city)                     // Filter out the cities
+        public List<Person> FindByCity(string name)                     // Filter out the name of the people
         {
-            List<Person> personCityList = new List<Person>();
+            List<Person> personNameList = new List<Person>();
 
             foreach (Person item in _personRepo.Read())                 // Read in all the persons
             {
-                if (item.City.Equals(city))                             // Sort out the matching cities                         
+                if (item.Name.Equals(name))                             // Sort out the matching persons                         
                 {
-                    personCityList.Add(item);
+                    personNameList.Add(item);
                 }
             }
 
-            return personCityList;                                      // Return the list with the matching cities
+            return personNameList;                                      // Return the list with the matching cities
         }
 
 

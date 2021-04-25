@@ -22,18 +22,18 @@ namespace MVCPersonList.Models.ViewModel
         public string Phone { get; set; }
 
                
-        public List<String> CityList { get; set; }
+        public List<String> PeopleList { get; set; }
 
 
         public CreatePerson()
         {
-            CityList = new List<String>()
+            PeopleList = new List<String>()
             {
-            "Alicante",
-            "Cincinnati",
-            "Portland",
-            "São Paulo",
-            "Trollhättan"
+            "Andersson",
+            "Bengtsson",
+            "Carlsson",
+            "Danielsson",
+            "Eriksson"
             };
         }
     }
