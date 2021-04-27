@@ -21,7 +21,7 @@ namespace MVCPersonList.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(PersonIndexViewModel indexViewModel)   // Normally shows all persons available here
+        public IActionResult Index(PersonIndexViewModel indexViewModel)   // Normally shows all filtered persons here
         {
             indexViewModel.PersonList = _personService.FindByCity(indexViewModel.FilterText);
          

@@ -8,13 +8,7 @@
 <form asp-action="Create" asp-controller="People" method="post">
 
     <label asp-for="Name"></label>
-    <select asp-for="Name">
-        <option value="" disabled>Select a name</option>
-        @foreach (string item in Model.PeopleList)
-        {
-            <option value="@item">@item</option>
-        }
-    </select>
+    <input asp-for="Name">
     <span asp-validation-for="Name"></span>
 
     <label asp-for="City"></label>
