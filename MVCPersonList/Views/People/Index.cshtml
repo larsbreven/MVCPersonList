@@ -88,24 +88,25 @@
 
         @foreach (var item in Model.PersonList)
         {
-            <div class="row">
+            <partial name="~/Views/Shared/_APersonRowPartialView" model="item" />
+            <!--<div class="row">-->  <!-- Everything that is comment out is transfered to the above "partial name"-->
                 <!-- Name -->
-                <div class="col-4">
+                <!--<div class="col-4">
                     <p>@item.Name</p>
-                </div>
+                </div>-->
                 <!-- City -->
-                <div class="col-4">
+                <!--<div class="col-4">
                     <p>@item.City</p>
-                </div>
+                </div>-->
                 <!-- Phone -->
-                <div class="col-2">
+                <!--<div class="col-2">
                     <p>@item.Phone</p>
-                </div>
+                </div>-->
                 <!-- Action -->
-                <div class="col-2">
+                <!--<div class="col-2">
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
                 </div>
-            </div>
+            </div>-->
         }
     </div>
 </div>
