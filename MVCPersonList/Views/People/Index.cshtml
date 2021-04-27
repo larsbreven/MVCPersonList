@@ -1,38 +1,58 @@
-﻿@model PersonIndexViewModel 
+﻿@model PersonIndexViewModel
 @{
     ViewData["Title"] = "Person Index";
 }
 
 <h1>Index</h1>
 
-<a asp-action="Create">Create</a>
+<h1>Create</h1>
 
-<form asp-action="Index" method="post">
-    <label asp-for="FilterText"></label>
-    <input asp-for="FilterText" />
-    <input type="submit" value="Filter by name" />
+<form asp-action="Create" asp-controller="People" method="post">
+
+    <label asp-for="CreatePerson.Name"></label>
+    <input asp-for="CreatePerson.Name">
+    <span asp-validation-for="CreatePerson.Name"></span>
+
+    <label asp-for="CreatePerson.City"></label>
+    <input asp-for="CreatePerson.City" />
+    <span asp-validation-for="CreatePerson.City"></span>
+
+    <label asp-for="CreatePerson.Phone"></label>
+    <input asp-for="CreatePerson.Phone" />
+    <span asp-validation-for="CreatePerson.Phone"></span>
+
+    <button>Create</button>
+    <button type="reset">Reset</button>
 </form>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Phone</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
 
-    @foreach (var item in Model.PersonList)
-        {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.City</td>
-            <td>@item.Phone</td>
-            <td><a asp-action="Details" asp-route-id="@item.Id">Details</a></td>
-        </tr>    
-        }
+    <form asp-action="Index" method="post">
+        <label asp-for="FilterText"></label>
+        <input asp-for="FilterText" />
+        <input type="submit" value="Filter by name" />
+    </form>
 
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.PersonList)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.City</td>
+                    <td>@item.Phone</td>
+                    <td><a asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>

@@ -27,14 +27,8 @@ namespace MVCPersonList.Controllers
          
             return View(indexViewModel);            // Returns an indexViewModel
         }
-
-
-
-        [HttpGet]                                   // Create a new person to the list
-        public IActionResult Create()                
-        {
-            return View(new CreatePerson());
-        }
+               
+        
         [HttpPost]
         public IActionResult Create(CreatePerson createPerson)
         {
@@ -44,7 +38,15 @@ namespace MVCPersonList.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            return View(createPerson);              // If a person is not properly created it will return back to the same view
+
+            PersonIndexViewModel personIndexView = new PersonIndexViewModel();
+            personIndexView.CreatePerson = createPerson;
+            personIndexView.PersonList = new List<Person>();
+
+
+            return View("Index", personIndexView);              // If a person is not properly created it will return back to the same view
+        
+            
         }
 
 

@@ -11,5 +11,7 @@ namespace MVCPersonList.Models.ViewModel
         public string FilterText { get; set; }
 
         public List<Person> PersonList { get; set; }
+
+        public CreatePerson CreatePerson { get; set; }
     }
 }
