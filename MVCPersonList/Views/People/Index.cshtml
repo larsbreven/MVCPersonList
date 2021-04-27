@@ -32,7 +32,7 @@
         <input type="submit" value="Filter by name" />
     </form>
 
-    <table>
+    @*<table>                   -------------------------------         First version         ---------------------------------------------------
         <thead>
             <tr>
                 <th>Name</th>
@@ -55,4 +55,57 @@
             }
 
         </tbody>
-    </table>
+    </table>*@
+
+<hr />
+
+
+<!-- -------------------------------------------------- Table ----------------------------------- -->
+<div class="row">
+    <div class="col-12">
+        <!-- ------------------------------------------ Head ------------------------------------- -->
+        <div class="row">
+            <!-- Name -->
+            <div class="col-4">
+                <h5>Name</h5>
+            </div>
+            <!-- City -->
+            <div class="col-4">
+                <h5>City</h5>
+            </div>
+            <!-- Phone -->
+            <div class="col-2">
+                <h5>Phone</h5>
+            </div>
+            <!-- Action -->
+            <div class="col-2">
+                <h5>Action</h5>
+            </div>
+        </div>
+
+
+        <!-- --------------------------------------- Body ---------------------------------- -->
+
+        @foreach (var item in Model.PersonList)
+        {
+            <div class="row">
+                <!-- Name -->
+                <div class="col-4">
+                    <p>@item.Name</p>
+                </div>
+                <!-- City -->
+                <div class="col-4">
+                    <p>@item.City</p>
+                </div>
+                <!-- Phone -->
+                <div class="col-2">
+                    <p>@item.Phone</p>
+                </div>
+                <!-- Action -->
+                <div class="col-2">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
