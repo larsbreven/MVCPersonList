@@ -8,11 +8,11 @@ using MVCPersonList.Models.ViewModel;
 
 namespace MVCPersonList.Models.Service
 {
-    public class PersonService : IPeopleService
+    public class PeopleService : IPeopleService
     {
         IPeopleRepo _personRepo;                             // Storage for person data
 
-        public PersonService()
+        public PeopleService()
         {
             _personRepo = new InMemoryPeopleRepo();
         }

@@ -12,7 +12,7 @@ namespace MVCPersonList.Controllers
     public class PeopleController : Controller
     {
 
-        IPeopleService _personService = new PersonService();
+        IPeopleService _personService = new PeopleService();
 
         [HttpGet]
         public IActionResult Index()                // Normally shows all persons available here

@@ -7,7 +7,7 @@ namespace MVCPersonList.Models.Data                     // Namespace must reflec
 {
     public class Person
     {
-        public int Id { get; set; }                     // Only used in the backend, not visible for the client
+        public int Id { get; set; }                     // The Id is only used in the backend, not visible for the client
 
         public string Name { get; set; }
         public string Phone { get; set; }
