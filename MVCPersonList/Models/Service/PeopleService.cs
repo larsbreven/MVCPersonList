@@ -39,30 +39,30 @@ namespace MVCPersonList.Models.Service
             return indexViewModel;
         }
 
-        public Person FindByID(int id)
+        public Person FindById(int id)
         {
             return _personRepo.Read(id);
         }
 
-        public List<Person> FindByCity(string name)                     // Filter out the name of the people
+        public List<Person> FindByName(string name)                     // Filter out the searched name of the person
         {
-            List<Person> personNameList = new List<Person>();
+            List<Person> personNameList = new List<Person>();           // Create the filtered list
 
-            foreach (Person item in _personRepo.Read())                 // Read in all the persons
+            foreach (Person item in _personRepo.Read())                 // _personRepo will read in all the persons
             {
-                if (item.Name.Equals(name))                             // Sort out the matching persons                         
+                if (item.Name.Equals(name))                             // Sort out the filtered matching person                         
                 {
-                    personNameList.Add(item);
+                    personNameList.Add(item);                           // Add the person to the list
                 }
             }
 
-            return personNameList;                                      // Return the list with the matching cities
+            return personNameList;                                      // Return the list with the matching person
         }
 
 
         public Person Edit(int id, CreatePerson person)
         {
-            Person originPerson = FindByID(id);
+            Person originPerson = FindById(id);
 
             if (originPerson == null)                                   // No person to update -- not even the "origin" person
             {

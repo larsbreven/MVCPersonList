@@ -11,8 +11,8 @@ namespace MVCPersonList.Models.Service
     {
         Person Add(CreatePerson createPerson);      // "Create"
         PersonIndexViewModel All();                 // "Read", here is the conversion of a viewmodel to real data
-        Person FindByID(int id);                    // Possible to add more methods in the service layer    
-        List<Person> FindByCity(string city);       // can be quite big, methods like find city, phone, brand and so on  (Cities can be many = list)
+        Person FindById(int id);                    // Possible to add more methods in the service layer    
+        List<Person> FindByName(string name);       // can be quite big, methods like find city, phone, brand and so on  (Cities can be many = list)
         Person Edit(int id, CreatePerson person);   // "Update"
         CreatePerson PersonToCreatePerson(Person person);
         bool Remove(int id);                        // "Delete"

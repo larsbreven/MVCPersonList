@@ -12,18 +12,18 @@ namespace MVCPersonList.Controllers
     public class PeopleController : Controller
     {
 
-        IPeopleService _personService = new PeopleService();
+        IPeopleService _peopleService = new PeopleService();
 
         [HttpGet]
         public IActionResult Index()                // Normally shows all persons available here
         {
-            return View(_personService.All());      // Returns a PersonIndexViewModel
+            return View(_peopleService.All());      // Returns a PersonIndexViewModel
         }
 
         [HttpPost]
         public IActionResult Index(PersonIndexViewModel indexViewModel)   // Normally shows all filtered persons here
         {
-            indexViewModel.PersonList = _personService.FindByCity(indexViewModel.FilterText);
+            indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
          
             return View(indexViewModel);            // Returns an indexViewModel
         }
@@ -34,7 +34,7 @@ namespace MVCPersonList.Controllers
         {
             if (ModelState.IsValid)
             {
-                _personService.Add(createPerson);
+                _peopleService.Add(createPerson);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -52,7 +52,7 @@ namespace MVCPersonList.Controllers
 
         public IActionResult Details(int id)
         {
-            Person person = _personService.FindByID(id);
+            Person person = _peopleService.FindById(id);
 
             if (person == null)
             {
@@ -65,7 +65,7 @@ namespace MVCPersonList.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Person person = _personService.FindByID(id);
+            Person person = _peopleService.FindById(id);
 
             if (person == null)
             {
@@ -74,7 +74,7 @@ namespace MVCPersonList.Controllers
 
             EditPerson editPerson = new EditPerson();
             editPerson.Id = id;
-            editPerson.CreatePerson = _personService.PersonToCreatePerson(person);
+            editPerson.CreatePerson = _peopleService.PersonToCreatePerson(person);
 
             return View(editPerson);
         }
@@ -84,7 +84,7 @@ namespace MVCPersonList.Controllers
         {
             if (ModelState.IsValid)
             {
-                Person person = _personService.Edit(id, createPerson);
+                Person person = _peopleService.Edit(id, createPerson);
 
                 return RedirectToAction(nameof(Index));
             }

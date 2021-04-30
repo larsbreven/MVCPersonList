@@ -6,6 +6,7 @@
 <h1>Index</h1>
 
 <p>ViewBag.Msg @ViewBag.Msg</p>
+
 <form asp-action="ExampleOne">
 
     <input type="text" name="messageText" value="" />
@@ -16,7 +17,7 @@
 
 <hr />
 
-<p>ViewBag.Msg @ViewBag.Msg</p>
+
 <form asp-action="ExampleTwo">
 
     <input type="text" name="messageText" value="" />
@@ -24,3 +25,16 @@
     <button>Save message</button>
 
 </form>
+
+<hr />
+
+<button id="allBtn">All persons</button>                <!-- Looking for all persons -->
+<input type="text" id="textInput" />
+<button id="inputBtn">search for id</button>                 <!-- Looking for one person using id -->
+
+<div id="resultDiv">
+
+</div>
+
+
+<script src="~/js/PersonJS.js"></script>

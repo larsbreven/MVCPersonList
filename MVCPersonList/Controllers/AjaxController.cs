@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCPersonList.Models.Data;
+using MVCPersonList.Models.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,10 @@ namespace MVCPersonList.Controllers
 {
     public class AjaxController : Controller
     {
-        public IActionResult Index()
+
+        static readonly IPeopleService _peopleService = new PeopleService();
+
+        public IActionResult Index()                                    // Go to an action
         {
             return View();
         }
@@ -23,6 +28,25 @@ namespace MVCPersonList.Controllers
         {
             ViewBag.Msg = messageText;                                  // Gets the dynamic ViewBag with the text in the string "messageText"
             return RedirectToAction("Index");                           // The "messagetext" will be redirected to Index and reload the full page
+        }
+
+        [HttpGet]
+        public IActionResult AllPersonsPartialView()
+        {
+            List<Person> personList = _peopleService.All().PersonList;  // .All() gets the ViewModel, set up the data for the viewmodel
+
+            return PartialView("_AllPersonPartialView", personList);    // Return and send it as a partial view 
+        }
+
+        [HttpPost]
+        public IActionResult DetailsPartialView(int id)
+        {
+            Person person = _peopleService.FindById(id);  // .All() gets the ViewModel
+
+            return PartialView("_APersonRowPartialView", person);    // Return a partial view
+
+            // return NotFound(); // Status code 404 premade method
+            // return BadRequest(); // Status code 400
         }
     }
 }

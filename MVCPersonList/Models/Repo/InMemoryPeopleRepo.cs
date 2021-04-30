@@ -10,8 +10,17 @@ namespace MVCPersonList.Models.Repo
     {
         static List<Person> personList = new List<Person>();
         static int idCounter = 0;
-        
-        
+
+        /*
+        public InMemoryPeopleRepo()         // List of default persons can be added
+        {
+            personList.Add(new Person() { Id = 1, Name = "Antonia", City = "Alicante", Phone = "123" });
+            personList.Add(new Person() { Id = 2, Name = "Britney", City = "Baltimore", Phone = "456" });
+            personList.Add(new Person() { Id = 3, Name = "Carol", City = "Cincinnati", Phone = "789" });
+            idCounter = 3;
+        }
+        */
+
         public Person Create(Person person)
         {
             person.Id = ++idCounter;        // The person gets the unique Id, this is a new person
@@ -66,10 +75,6 @@ namespace MVCPersonList.Models.Repo
             }
 
             return personList.Remove(person);
-
-
         }
-
-
     }
 }
