@@ -8,8 +8,8 @@ namespace MVCPersonList.Models.Repo
 {
     public class InMemoryPeopleRepo : IPeopleRepo
     {
-        static List<Person> personList = new List<Person>();
-        static int idCounter = 0;
+        List<Person> personList = new List<Person>();
+        int idCounter = 0;
 
         public InMemoryPeopleRepo()         // List of default persons can be added
         {

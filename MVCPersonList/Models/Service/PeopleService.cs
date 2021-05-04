@@ -10,11 +10,11 @@ namespace MVCPersonList.Models.Service
 {
     public class PeopleService : IPeopleService
     {
-        IPeopleRepo _personRepo;                             // Storage for person data
+        IPeopleRepo _peopleRepo;                             // Storage for person data
 
-        public PeopleService()
+        public PeopleService(IPeopleRepo peopleRepo)
         {
-            _personRepo = new InMemoryPeopleRepo();
+            _peopleRepo = peopleRepo;
         }
 
         public Person Add(CreatePerson createPerson)        // Service will do the conversion
@@ -25,7 +25,7 @@ namespace MVCPersonList.Models.Service
             person.City = createPerson.City;
             person.Phone = createPerson.Phone;
 
-            person = _personRepo.Create(person);
+            person = _peopleRepo.Create(person);
 
             return person;                                  // The person is returned with the right Id
         }
@@ -34,21 +34,21 @@ namespace MVCPersonList.Models.Service
         {
             PersonIndexViewModel indexViewModel = new PersonIndexViewModel();
 
-            indexViewModel.PersonList = _personRepo.Read();
+            indexViewModel.PersonList = _peopleRepo.Read();
 
             return indexViewModel;
         }
 
         public Person FindById(int id)
         {
-            return _personRepo.Read(id);
+            return _peopleRepo.Read(id);
         }
 
         public List<Person> FindByName(string name)                     // Filter out the searched name of the person
         {
             List<Person> personNameList = new List<Person>();           // Create the filtered list
 
-            foreach (Person item in _personRepo.Read())                 // _personRepo will read in all the persons
+            foreach (Person item in _peopleRepo.Read())                 // _personRepo will read in all the persons
             {
                 if (item.Name.Equals(name))                             // Sort out the filtered matching person                         
                 {
@@ -74,14 +74,14 @@ namespace MVCPersonList.Models.Service
             originPerson.City = person.City;
             originPerson.Phone = person.Phone;
 
-            originPerson = _personRepo.Update(originPerson);
+            originPerson = _peopleRepo.Update(originPerson);
 
             return originPerson;
         }
 
         public bool Remove(int id)
         {
-            return _personRepo.Delete(id);
+            return _peopleRepo.Delete(id);
         }
 
         public CreatePerson PersonToCreatePerson(Person person)

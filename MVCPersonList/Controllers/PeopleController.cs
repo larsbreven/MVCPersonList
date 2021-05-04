@@ -12,16 +12,21 @@ namespace MVCPersonList.Controllers
     public class PeopleController : Controller
     {
 
-        IPeopleService _peopleService = new PeopleService();
+        IPeopleService _peopleService;
+
+        public PeopleController(IPeopleService peopleService)           // Constructor dependency injection
+        {
+            _peopleService = peopleService;
+        }
 
         [HttpGet]
-        public IActionResult Index()                // Normally shows all persons available here
+        public IActionResult Index()                                    // Normally shows all persons available here
         {
-            return View(_peopleService.All());      // Returns a PersonIndexViewModel
+            return View(_peopleService.All());                          // Returns a PersonIndexViewModel
         }
 
         [HttpPost]
-        public IActionResult Index(PersonIndexViewModel indexViewModel)   // Normally shows all filtered persons here
+        public IActionResult Index(PersonIndexViewModel indexViewModel) // Normally shows all filtered persons here
         {
             indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
          

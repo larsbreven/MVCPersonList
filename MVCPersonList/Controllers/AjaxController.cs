@@ -11,7 +11,13 @@ namespace MVCPersonList.Controllers
     public class AjaxController : Controller
     {
 
-        static readonly IPeopleService _peopleService = new PeopleService();
+        IPeopleService _peopleService;
+
+        public AjaxController(IPeopleService peopleService)
+        {
+            _peopleService = peopleService;
+        }
+
 
         public IActionResult Index()                                    // Go to an action
         {
@@ -41,12 +47,15 @@ namespace MVCPersonList.Controllers
         [HttpPost]
         public IActionResult DetailsPartialView(int id)
         {
-            Person person = _peopleService.FindById(id);  // .All() gets the ViewModel
+            Person person = _peopleService.FindById(id);                // .All() gets the ViewModel
 
-            return PartialView("_APersonRowPartialView", person);    // Return a partial view
+            if (person == null)                                         // If there is no person in the list
+            {
+                return NotFound();                                      // Status code 404 (premade method)
+            }
 
-            // return NotFound(); // Status code 404 premade method
-            // return BadRequest(); // Status code 400
+            return PartialView("_APersonRowPartialView", person);       // Return a partial view
+                       
         }
     }
 }

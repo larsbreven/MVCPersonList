@@ -13,11 +13,12 @@ namespace MVCPersonList.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPeopleService _peopleService;
+     
+        IPeopleService _peopleService;
 
-        public HomeController()
+        public HomeController(IPeopleService peopleService)
         {
-            _peopleService = new PeopleService();
+            _peopleService = peopleService;
         }
 
        
