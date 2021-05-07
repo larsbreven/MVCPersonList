@@ -29,19 +29,23 @@ namespace MVCPersonList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // -------------------------------------------------- Connection to database --------------------------------------------------
             services.AddDbContext<PersonListDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            // --------------------------------------- Services Inversion of Control ------------------------------------------------------
             services.AddScoped<IPeopleService, PeopleService>();
-            // services.AddSingleton<IPeopleRepo, InMemoryPeopleRepo>();        // InMemory version
-            services.AddScoped<IPeopleRepo, DatabasePeopleRepo>();              // Database version
+            services.AddScoped<ICityService, CityService>();
 
-            // service.AddMVC() is used instead of this: services.AddControllersWithViews();
+            // --------------------------------------- Repository Inversion of Control ----------------------------------------------------
+            // services.AddSingleton<IPeopleRepo, InMemoryPeopleRepo>();        // InMemory version
+            services.AddScoped<IPeopleRepo, DatabasePeopleRepo>();              // Database version PeopleRepo
+            services.AddScoped<ICityRepo, CityRepo>();                          // Database version CityRepo
+
+            // services.AddMVC() is used instead of this: services.AddControllersWithViews();
             services.AddMvc();
 
         }
-        // ---------------------------------------------------------------------------------------------------------------------------------
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

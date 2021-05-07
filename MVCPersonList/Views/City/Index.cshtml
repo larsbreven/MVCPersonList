@@ -1,0 +1,31 @@
+﻿@model List<City>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<a asp-action="Create" >Create city</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Current Mayor</th>
+            <th>New Mayor</th>
+            <th>Time registered</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CurrentMayor</td>
+                <td>@item.NewMayor</td>
+                <td>@item.RegistTimeNewMayor</td>
+                <td></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -57,5 +57,23 @@ namespace MVCPersonList.Controllers
             return PartialView("_APersonRowPartialView", person);       // Return a partial view
                        
         }
+
+        public IActionResult Delete(int id)
+        {
+            Person person = _peopleService.FindById(id);
+
+            if (person == null)
+            {
+                return NotFound();//404
+            }
+
+            if (_peopleService.Remove(id))
+            {
+                return Ok("person" + id);//200
+            }
+
+            return BadRequest();
+        }
+
     }
 }
