@@ -1,8 +1,8 @@
-﻿using MVCPersonList.Models.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCPersonList.Models.Data;
 
 namespace MVCPersonList.Models.Repo
 {

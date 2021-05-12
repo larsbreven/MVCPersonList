@@ -10,9 +10,7 @@
 <table>
     <thead>
         <tr>
-            <th>Current Mayor</th>
-            <th>New Mayor</th>
-            <th>Time registered</th>
+            <th>Name of the city</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -20,9 +18,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.CurrentMayor</td>
-                <td>@item.NewMayor</td>
-                <td>@item.RegistTimeNewMayor</td>
+                <td>@item.CityName</td>
                 <td></td>
             </tr>
         }

@@ -17,7 +17,7 @@ namespace MVCPersonList.Models.ViewModel
         [StringLength(100, MinimumLength = 2)]
         public string City { get; set; }
 
-        [Required]                                      // Phone is required to type in when creating a person
+                                                        // Phone is required to type in when creating a person
         [StringLength(25, MinimumLength = 2)]
         public string Phone { get; set; }
 

@@ -1,0 +1,27 @@
+﻿@model CreateCity
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form asp-action="Create" method="post">
+    <label asp-for="CityName"></label>
+    <input asp-for="CityName" />
+    <span asp-validation-for="CityName"></span>
+
+    <label asp-for="PersonInQuestionId"></label>
+    <select asp-for="PersonInQuestionId">
+        @foreach (var item in Model.PersonList)
+        {
+            <option value="@item.Id"></option>
+        }
+    </select>
+    <span asp-validation-for="PersonInQuestionId"></span>
+
+
+
+
+
+    <button>Create</button>                     <!-- If there is a button inside a form it will react as submit -->
+</form>

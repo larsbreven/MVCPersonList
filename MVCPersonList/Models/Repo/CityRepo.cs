@@ -55,9 +55,7 @@ namespace MVCPersonList.Models.Repo
             }
 
             _personListDbContext.Update(city);                              // Transfer the data
-            //originCity.NewMayor = city.NewMayor;                          // Same command as the simplified version above
-            //originCity.CurrentMayor = city.CurrentMayor;
-            //originCity.RegistTimeNewMayor = city.RegistTimeNewMayor;
+            //originCity.CityName = city.CityName;                          // Same command as the simplified version above
 
             int result = _personListDbContext.SaveChanges();
 

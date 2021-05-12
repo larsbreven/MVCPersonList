@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;                    // Needed for DbContext
-using MVCPersonList.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCPersonList.Models.Data;
 
 namespace MVCPersonList.Database
 {

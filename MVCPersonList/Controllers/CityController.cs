@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCPersonList.Models.Service;
-using MVCPersonList.Models.PeopleViewModel;
+using MVCPersonList.Models.ViewModel;
 
 namespace MVCPersonList.Controllers
 {
@@ -45,7 +45,7 @@ namespace MVCPersonList.Controllers
         // POST: CityController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]                      // Antipirate - feature
-        public ActionResult Create(CreateCity createCity)
+        public ActionResult Create(CreateCity createCity)       // Use the modelbinder here
         {
             if(ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace MVCPersonList.Controllers
             }
             else
             {
-                return View(createCity);
+                return View(createCity);                        // If it fails send it back to ActionResult Create
             }
         }
 

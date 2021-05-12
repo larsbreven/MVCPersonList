@@ -3,14 +3,16 @@ using MVCPersonList.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCPersonList.Migrations
 {
     [DbContext(typeof(PersonListDbContext))]
-    partial class PersonListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210512150556_Cityver1")]
+    partial class Cityver1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

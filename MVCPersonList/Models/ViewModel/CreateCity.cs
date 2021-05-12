@@ -5,18 +5,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVCPersonList.Models.PeopleViewModel
+namespace MVCPersonList.Models.ViewModel
 {
     public class CreateCity
     {
         [Required]
         [StringLength(60, MinimumLength = 2)]                                  // In a ViewModel use stringLength instead of MaxLength
-        public string NewMayor { get; set; }
+        public string CityName { get; set; }
 
         [Required]
-        [StringLength(60, MinimumLength = 2)]                                   // In a ViewModel use stringLength instead of MaxLength
-        public string CurrentMayor { get; set; }
-
+        public int PersonInQuestionId { get; set; }                             // Only the Id is needed
+            
         public List<Person> PersonList { get; set; }
+
+
     }
 }

@@ -13,15 +13,7 @@ namespace MVCPersonList.Models.Data
 
         [Required]
         [MaxLength(60)]
-        public string NewMayor { get; set; }
-
-        [Required]
-        [MaxLength(60)]
-        public string CurrentMayor { get; set; }
-
-        [Required]
-        public DateTime RegistTimeNewMayor { get; set; }
-
-        
+        public string CityName { get; set; }
+                        
     }
 }

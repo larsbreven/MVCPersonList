@@ -14,13 +14,14 @@ namespace MVCPersonList.Models.Data                     // Namespace must reflec
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-
+                
         [Required]
         [MaxLength(100)]
+        public string City { get; set; }
+
+      
+        [MaxLength(25)]
         public string Phone { get; set; }
 
-        [Required]
-        [MaxLength(25)]
-        public string City { get; set; }
     }
 }
