@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCPersonList.Models.Data;
+using MVCPersonList.Models.Repo;
 using MVCPersonList.Models.Service;
 using MVCPersonList.Models.ViewModel;
 
@@ -13,10 +14,12 @@ namespace MVCPersonList.Controllers
     {
 
         IPeopleService _peopleService;
+        private readonly IPersonGroupRepo _personGroupRepo;
 
-        public PeopleController(IPeopleService peopleService)           // Constructor dependency injection
+        public PeopleController(IPeopleService peopleService, IPersonGroupRepo personGroupRepo)           // Constructor dependency injection
         {
             _peopleService = peopleService;
+            _personGroupRepo = personGroupRepo;
         }
 
         [HttpGet]
@@ -30,9 +33,15 @@ namespace MVCPersonList.Controllers
         {
             indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
          
-            return View(indexViewModel);            // Returns an indexViewModel
+            return View(indexViewModel);                                // Returns an indexViewModel
         }
-               
+            
+        
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(new CreatePerson(_personGroupRepo));
+        }
         
         [HttpPost]
         public IActionResult Create(CreatePerson createPerson)

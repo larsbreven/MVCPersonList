@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCPersonList.Models.Data;
 using MVCPersonList.Models.Service;
 using MVCPersonList.Models.ViewModel;
 
@@ -30,7 +31,13 @@ namespace MVCPersonList.Controllers
         // GET: CityController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            City city = _cityService.FindById(id);
+
+            if (city == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(city);
         }
 
         // GET: CityController/Create

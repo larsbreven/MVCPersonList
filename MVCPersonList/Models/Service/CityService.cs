@@ -24,7 +24,7 @@ namespace MVCPersonList.Models.Service
             City city = new City();                         // A "blank" city is created
 
             city.CityName = createCity.CityName;            // In this section add additional validations and checks
-          //  city.PersonInQuestion = _peopleRepo.Read(createCity.PersonInQuestionId);    // Using peopleRepo and the PersonInQuestionId to put in the right city based on the Id
+            city.PersonInQuestion = _peopleRepo.Read(createCity.PersonInQuestionId);    // Using peopleRepo and the PersonInQuestionId to put in the right city based on the Id
 
             return _cityRepo.Create(city);
         }

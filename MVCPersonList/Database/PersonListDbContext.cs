@@ -16,5 +16,7 @@ namespace MVCPersonList.Database
         public DbSet<Person> People { get; set; }       // By default DBSet is private, remember to change it to public
                                                         // The columns are structured according to <Person>  
         public DbSet<City> Cities { get; set; }         // People and cities is the tablename
+
+        public DbSet<PersonGroup> PersonGroups { get; set; }    // PersonGroup is the tablename
     }
 }

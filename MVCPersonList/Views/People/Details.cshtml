@@ -12,9 +12,25 @@
     <dd>@Model.City</dd>
     <dt>Phone</dt>
     <dd>@Model.Phone</dd>
-
-
+    <dt>Action:</dt>
+    <dd>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </dd>
 </dl>
 
-<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-<a asp-action="Index">Back to List</a>
+<table>
+    <table>
+        <thead>
+            <tr>City</tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PersonHistory)
+            {
+                @item.CityName
+            }
+        </tbody>
+    </table>
+
+
+</table>

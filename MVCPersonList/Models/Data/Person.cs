@@ -23,5 +23,10 @@ namespace MVCPersonList.Models.Data                     // Namespace must reflec
         [MaxLength(25)]
         public string Phone { get; set; }
 
+        // "Many" in the "Many to one - expression"
+
+        public List<City> PersonHistory { get; set; }       // Navigational property ==> Possible to navigate from Person to City to another City-object
+
+
     }
 }

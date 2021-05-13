@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCPersonList.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVCPersonList.Models.Repo
 {
@@ -36,9 +37,9 @@ namespace MVCPersonList.Models.Repo
             throw new NotImplementedException();
         }
 
-        public Person Read(int id)
-        {
-            return personListDbContext.People.SingleOrDefault(row => row.Id == id); // If not found return null
+        public Person Read(int id)                                          // When one person is read ("id"), the PersonHistory is included
+        {                                   
+            return personListDbContext.People.Include(Person => Person.PersonHistory).SingleOrDefault(row => row.Id == id); // If not found return null
         }
 
         public List<Person> Read()
