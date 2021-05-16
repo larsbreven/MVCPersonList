@@ -5,57 +5,59 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCPersonList.Models.Repo;
+using MVCPersonList.Models.Service;
 
 namespace MVCPersonList.Models.Repo
 {
-    public class CityRepo : ICityRepo                                       // Implement ICityRepo
+    public class CountryRepo : ICountryRepo
     {
 
         private readonly PersonListDbContext _personListDbContext;          // Dependency of injection
 
-        public CityRepo(PersonListDbContext personListDbContext)            // This is the connection to the database
+        public CountryRepo(PersonListDbContext personListDbContext)            // This is the connection to the database
         {
             this._personListDbContext = personListDbContext;
         }
 
 
-        public City Create(City city)
+        public Country Create(Country country)
         {
-            _personListDbContext.Cities.Add(city);                          
+            _personListDbContext.Countries.Add(country);
 
             int result = _personListDbContext.SaveChanges();
 
-            if(result == 0)
+            if (result == 0)
             {
                 return null;                                                // Not saved correctly in the database
             }
 
-            return city;
+            return country;
         }
 
 
-        public City Read(int id)
+        public Country Read(int id)
         {
-            return _personListDbContext.Cities.Find(id);                    // Same behaviour as SingleOrDefault
+            return _personListDbContext.Countries.Find(id);                    // Same behaviour as SingleOrDefault
         }
 
-        public List<City> Read()
+        public List<Country> Read()
         {
-            return _personListDbContext.Cities.Include( city => city.Country).ToList();   // This will include the country with all cities    !!! This can be messy (many to many ==> infinite loop)
+            return _personListDbContext.Cities.Include(row => row.PersonInQuestion).ToList();   //    !!! This can be messy (many to many ==> infinite loop)
             // return _personListDbContext.Cities.ToList();                    // Go to the database and get all the cities and convert it to a list
         }
 
-        public City Update(City city)
+        public Country Update(Country country)
         {
-            City originCity = Read(city.Id);
+            Country originCountry = Read(country.Id);
 
-            if(originCity == null)
+            if (originCountry == null)
             {
                 return null;
             }
 
-            _personListDbContext.Update(city);                              // Transfer the data
-            //originCity.CityName = city.CityName;                          // Same command as the simplified version above
+            _personListDbContext.Update(country);                              // Transfer the data
+            //originCity.CountryName = country.CountryName;                          // Same command as the simplified version above
 
             int result = _personListDbContext.SaveChanges();
 
@@ -65,21 +67,21 @@ namespace MVCPersonList.Models.Repo
             }
 
 
-            return originCity; 
+            return originCountry;
         }
 
 
         public bool Delete(int id)
         {
 
-            City originCity = Read(id);
+            Country originCountry = Read(id);
 
-            if (originCity == null)                             // The id was not correct
+            if (originCountry == null)                             // The id was not correct
             {
                 return false;
             }
 
-            _personListDbContext.Cities.Remove(originCity);
+            _personListDbContext.Countries.Remove(originCountry);
 
             int result = _personListDbContext.SaveChanges();
 
@@ -91,7 +93,6 @@ namespace MVCPersonList.Models.Repo
             return true;
 
         }
-
 
 
 

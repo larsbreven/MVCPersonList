@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCPersonList.Models.Data;
+using MVCPersonList.Models.Repo;
 using MVCPersonList.Models.Service;
 using MVCPersonList.Models.ViewModel;
 
@@ -13,46 +13,45 @@ namespace MVCPersonList.Controllers
     public class CityController : Controller
     {
         private readonly ICityService _cityService;
-        private readonly IPeopleService _peopleService;
+        private readonly ICountryService _countryService;
+        private readonly IPeopleRepo _peopleRepo;
 
-        public CityController(ICityService cityService, IPeopleService peopleService)
+
+        public CityController(IPeopleRepo peopleRepo, ICityService cityService, ICountryService countryService)
         {
-            this._cityService = cityService;
-            this._peopleService = peopleService;
+            _cityService = cityService;
+            _countryService = countryService;
+            _peopleRepo = peopleRepo;
         }
 
-
-        // GET: CityController
-        public ActionResult Index()
+        public IActionResult Index()                     // 
         {
-            return View(_cityService.All());            // List of all cities
+            return View(_cityService.All());            // "All" provides a list of all cities from CityService
         }
 
-        // GET: CityController/Details/5
-        public ActionResult Details(int id)
-        {
-            City city = _cityService.FindById(id);
+        //// GET: CityController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    City city = _cityService.FindById(id);
 
-            if (city == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            return View(city);
-        }
+        //    if (city == null)
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(city);
+        //}
 
-        // GET: CityController/Create
-        public ActionResult Create()
+        public IActionResult Create()                    // This is the first to be called
         {
             CreateCity createCity = new CreateCity();
-            createCity.PersonList = _peopleService.All().PersonList;
+            createCity.CountryList = _countryService.All();
 
             return View(createCity);
         }
 
         // POST: CityController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]                      // Antipirate - feature
-        public ActionResult Create(CreateCity createCity)       // Use the modelbinder here
+        
+        public IActionResult Create(CreateCity createCity)       // This is the second to be called
         {
             if(ModelState.IsValid)
             {
@@ -65,46 +64,6 @@ namespace MVCPersonList.Controllers
             }
         }
 
-        // GET: CityController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CityController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]                        // Antipirate - feature
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CityController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CityController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
     }
 }

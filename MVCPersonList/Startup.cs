@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCPersonList.Database;
+using MVCPersonList.Models.Data;
 using MVCPersonList.Models.Repo;
 using MVCPersonList.Models.Service;
 using System;
@@ -36,11 +37,14 @@ namespace MVCPersonList
             // --------------------------------------- Services Inversion of Control ------------------------------------------------------
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<ICityService, CityService>();
+            services.AddScoped<ICountryService, CountryService>();
 
             // --------------------------------------- Repository Inversion of Control ----------------------------------------------------
             // services.AddSingleton<IPeopleRepo, InMemoryPeopleRepo>();        // InMemory version
-            services.AddScoped<IPeopleRepo, DatabasePeopleRepo>();              // Database version PeopleRepo
+            services.AddScoped<IPeopleRepo, PeopleRepo>();              // Database version PeopleRepo
             services.AddScoped<ICityRepo, CityRepo>();                          // Database version CityRepo
+            services.AddScoped<ICountryRepo, CountryRepo>();                    // Database version CountryRepo
+            services.AddScoped<IPersonGroupRepo, PersonGroupRepo>();            // Database version PersonGroupRepo
 
             // services.AddMVC() is used instead of this: services.AddControllersWithViews();
             services.AddMvc();

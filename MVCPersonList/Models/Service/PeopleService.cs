@@ -32,9 +32,9 @@ namespace MVCPersonList.Models.Service
             return person;                                  // The person is returned with the right Id
         }
 
-        public PersonIndexViewModel All()
+        public PersonIndex All()
         {
-            PersonIndexViewModel indexViewModel = new PersonIndexViewModel();
+            PersonIndex indexViewModel = new PersonIndex();
 
             indexViewModel.PersonList = _peopleRepo.Read();
 

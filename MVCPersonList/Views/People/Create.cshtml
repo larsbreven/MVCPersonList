@@ -1,6 +1,6 @@
 ﻿@model CreatePerson
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Person";
 }
 
 <h1>Create</h1>
@@ -11,9 +11,9 @@
     <input asp-for="Name">
     <span asp-validation-for="Name"></span>
 
-    <label asp-for="City"></label>
-    <input asp-for="City" />
-    <span asp-validation-for="City"></span>
+    <label asp-for="InCityId"></label>
+    <input asp-for="InCityId" />
+    <span asp-validation-for="InCityId"></span>
 
     <label asp-for="Phone"></label>
     <input asp-for="Phone" />

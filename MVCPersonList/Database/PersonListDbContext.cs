@@ -17,6 +17,8 @@ namespace MVCPersonList.Database
                                                         // The columns are structured according to <Person>  
         public DbSet<City> Cities { get; set; }         // People and cities is the tablename
 
+        public DbSet<Country> Countries { get; set; }   // Countries is the tablename
+
         public DbSet<PersonGroup> PersonGroups { get; set; }    // PersonGroup is the tablename
     }
 }

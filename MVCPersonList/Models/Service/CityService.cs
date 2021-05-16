@@ -10,13 +10,16 @@ namespace MVCPersonList.Models.Service
 {
     public class CityService : ICityService
     {
-        private readonly ICityRepo _cityRepo;
         private readonly IPeopleRepo _peopleRepo;
+        private readonly ICityRepo _cityRepo;
+        private readonly ICountryRepo _countryRepo;
 
-        public CityService(ICityRepo cityRepo, IPeopleRepo peopleRepo)
+
+        public CityService (IPeopleRepo peopleRepo, ICityRepo cityRepo, ICountryRepo countryRepo)
         {
-            _cityRepo = cityRepo;
             _peopleRepo = peopleRepo;
+            _cityRepo = cityRepo;
+            _countryRepo = countryRepo;
         }
 
         public City Add(CreateCity createCity)              // CreateCity is the class, createCity is the ViewModel
@@ -24,8 +27,8 @@ namespace MVCPersonList.Models.Service
             City city = new City();                         // A "blank" city is created
 
             city.CityName = createCity.CityName;            // In this section add additional validations and checks
-            city.PersonInQuestion = _peopleRepo.Read(createCity.PersonInQuestionId);    // Using peopleRepo and the PersonInQuestionId to put in the right city based on the Id
-
+            // city.PersonInQuestion = _peopleRepo.Read(createCity.PersonInQuestionId);    // Using peopleRepo and the PersonInQuestionId to put in the right city based on the Id
+            city.Country = _countryRepo.Read(CreateCity.CountryId);
             return _cityRepo.Create(city);
         }
 
@@ -46,12 +49,12 @@ namespace MVCPersonList.Models.Service
 
         public City FindById(int id)
         {
-            throw new NotImplementedException();
+            return _cityRepo.Read(id);
         }
 
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            return _cityRepo.Delete(id);
         }
 
         public CreateCity CityToCreateCity(City city)

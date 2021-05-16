@@ -6,7 +6,7 @@ using MVCPersonList.Models.Data;
 
 namespace MVCPersonList.Models.ViewModel
 {
-    public class PersonIndexViewModel                           // Container for the information needed in people view
+    public class PersonIndex                           // Container for the information needed in people view
     {
         public string FilterText { get; set; }
 

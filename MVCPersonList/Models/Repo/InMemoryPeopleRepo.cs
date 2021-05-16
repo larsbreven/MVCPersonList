@@ -11,15 +11,15 @@ namespace MVCPersonList.Models.Repo
         List<Person> personList = new List<Person>();
         int idCounter = 0;
 
-        public InMemoryPeopleRepo()         // List of default persons can be added
-        {
-            if (personList.Count == 0)
-            {
-                personList.Add(new Person() { Id = 1, Name = "Antonia", City = "Alicante", Phone = "123" });
-                personList.Add(new Person() { Id = 2, Name = "Britney", City = "Baltimore", Phone = "456" });
-                personList.Add(new Person() { Id = 3, Name = "Carol", City = "Cincinnati", Phone = "789" });
-            }
-        }
+        //public InMemoryPeopleRepo()         // List of default persons can be added
+        //{
+        //    if (personList.Count == 0)
+        //    {
+        //        personList.Add(new Person() { Id = 1, Name = "Antonia", City = "Alicante", Phone = "123" });
+        //        personList.Add(new Person() { Id = 2, Name = "Britney", City = "Baltimore", Phone = "456" });
+        //        personList.Add(new Person() { Id = 3, Name = "Carol", City = "Cincinnati", Phone = "789" });
+        //    }
+        //}
 
         public Person Create(Person person)
         {
@@ -57,7 +57,7 @@ namespace MVCPersonList.Models.Repo
             }
 
             originPerson.Name = person.Name;
-            originPerson.City = person.City;
+            originPerson.InCityId = person.InCityId;
             originPerson.Phone = person.Phone;
 
             return originPerson;                        // The origin person with updated information
@@ -69,7 +69,7 @@ namespace MVCPersonList.Models.Repo
         {
             Person person = Read(id);
 
-            if (person == null)                         // Not possible to remove aperson that does not exist            
+            if (person == null)                         // Not possible to remove a person that does not exist            
             {
                 return false;                            // The person does not exist 
             }

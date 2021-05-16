@@ -1,0 +1,27 @@
+﻿@model List<Country>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Country</h1>
+
+<a asp-action="Create">Create country</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name of the country</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CountryName</td>
+                <td></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

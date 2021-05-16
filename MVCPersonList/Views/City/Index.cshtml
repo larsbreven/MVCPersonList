@@ -10,7 +10,8 @@
 <table>
     <thead>
         <tr>
-            <th>Name of the city</th>
+            <th>City Name</th>
+            <th>Country Name</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -19,7 +20,7 @@
         {
             <tr>
                 <td>@item.CityName</td>
-                <td></td>
+                <td>@item.Country == null ? "No Country" : item.Country.CountryName)</td> <!-- If the country is not null the CountryName will be used -->
             </tr>
         }
 

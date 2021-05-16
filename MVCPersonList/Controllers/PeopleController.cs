@@ -29,7 +29,7 @@ namespace MVCPersonList.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(PersonIndexViewModel indexViewModel) // Normally shows all filtered persons here
+        public IActionResult Index(PersonIndex indexViewModel) // Normally shows all filtered persons here
         {
             indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
          
@@ -53,7 +53,7 @@ namespace MVCPersonList.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            PersonIndexViewModel personIndexView = new PersonIndexViewModel();
+            PersonIndex personIndexView = new PersonIndex();
             personIndexView.CreatePerson = createPerson;
             personIndexView.PersonList = new List<Person>();
 

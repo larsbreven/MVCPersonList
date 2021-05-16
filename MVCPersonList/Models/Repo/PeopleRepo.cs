@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MVCPersonList.Models.Repo
 {
-    public class DatabasePeopleRepo : IPeopleRepo
+    public class PeopleRepo : IPeopleRepo
     {
         private readonly PersonListDbContext personListDbContext;           // Dependency of injection
 
-        public DatabasePeopleRepo(PersonListDbContext personListDbContext)  // This is the connection to the database
+        public PeopleRepo(PersonListDbContext personListDbContext)  // This is the connection to the database
         {
             this.personListDbContext = personListDbContext;   
         }
