@@ -77,6 +77,22 @@ namespace MVCPersonList.Controllers
         }
 
         [HttpGet]
+        public IActionResult ManagePersonLanguage(int id)
+        {
+            Person person = _peopleService.FindById(id);
+
+            if (person == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(person);
+        }
+
+
+
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Person person = _peopleService.FindById(id);

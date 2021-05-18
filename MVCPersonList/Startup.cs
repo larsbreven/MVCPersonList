@@ -37,15 +37,16 @@ namespace MVCPersonList
             // --------------------------------------- Services Inversion of Control ------------------------------------------------------
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<ICityService, CityService>();
-            services.AddScoped<ICountryService, CountryService>();
+            // services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<ILanguageService, LanguageService>();
 
             // --------------------------------------- Repository Inversion of Control ----------------------------------------------------
             // services.AddSingleton<IPeopleRepo, InMemoryPeopleRepo>();        // InMemory version
-            services.AddScoped<IPeopleRepo, PeopleRepo>();              // Database version PeopleRepo
+            services.AddScoped<IPeopleRepo, PeopleRepo>();                      // Database version PeopleRepo
             services.AddScoped<ICityRepo, CityRepo>();                          // Database version CityRepo
-            services.AddScoped<ICountryRepo, CountryRepo>();                    // Database version CountryRepo
+            // services.AddScoped<ICountryRepo, CountryRepo>();                 // Database version CountryRepo
             services.AddScoped<IPersonGroupRepo, PersonGroupRepo>();            // Database version PersonGroupRepo
-
+            services.AddScoped<ILanguageRepo, LanguageRepo>();                  // Database version PersonGroupRepo
             // services.AddMVC() is used instead of this: services.AddControllersWithViews();
             services.AddMvc();
 

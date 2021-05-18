@@ -15,12 +15,12 @@
     <dt>Action:</dt>
     <dd>
         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="ManagePersonLanguage" asp-route-id="@Model.Id">ManagePersonLanguage</a> |
         <a asp-action="Index">Back to List</a>
     </dd>
 </dl>
 
 <table>
-    <table>
         <thead>
             <tr>City</tr>
         </thead>
@@ -30,7 +30,4 @@
                 @item.CityName
             }
         </tbody>
-    </table>
-
-
 </table>

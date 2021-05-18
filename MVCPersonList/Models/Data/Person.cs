@@ -30,6 +30,8 @@ namespace MVCPersonList.Models.Data                     // Namespace must reflec
 
         public List<City> PersonHistory { get; set; }       // Navigational property ==> Possible to navigate from Person to City to another City-object
 
-
+        // Many to many, join table
+        public List<PersonLanguage> PersonLanguages { get; set; }    // List of the language per person
     }
+
 }

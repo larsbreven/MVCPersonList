@@ -1,0 +1,30 @@
+﻿@model Person
+@{
+    ViewData["Title"] = "Manage Car Insurances";
+}
+
+<h1>Manage Car Insurances</h1>
+
+<div class="row">
+    <div class="col-6">
+        <h4>Current</h4>
+    </div>
+    <div class="col-6">
+        <h4>Available</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul>
+            @foreach (var item in Model.PersonLanguages)
+            {
+                <li>
+                    @item.Language.Name 
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-6">
+        
+    </div>
+</div>

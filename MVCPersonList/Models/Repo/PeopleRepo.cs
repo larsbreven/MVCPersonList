@@ -39,7 +39,10 @@ namespace MVCPersonList.Models.Repo
 
         public Person Read(int id)                                          // When one person is read ("id"), the PersonHistory is included
         {                                   
-            return personListDbContext.People.Include(Person => Person.PersonHistory).SingleOrDefault(row => row.Id == id); // If not found return null
+            return personListDbContext.People.Include(Person => Person.PersonHistory)
+                                             .Include(person => person.PersonLanguages)
+                                             .ThenInclude(perLan => perLan.Language)
+                                             .SingleOrDefault(row => row.Id == id); // If not found return null
         }
 
         public List<Person> Read()

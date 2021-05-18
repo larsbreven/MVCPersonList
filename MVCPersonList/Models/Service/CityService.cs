@@ -15,7 +15,7 @@ namespace MVCPersonList.Models.Service
         private readonly ICountryRepo _countryRepo;
 
 
-        public CityService (IPeopleRepo peopleRepo, ICityRepo cityRepo, ICountryRepo countryRepo)
+        public CityService(IPeopleRepo peopleRepo, ICityRepo cityRepo, ICountryRepo countryRepo)
         {
             _peopleRepo = peopleRepo;
             _cityRepo = cityRepo;

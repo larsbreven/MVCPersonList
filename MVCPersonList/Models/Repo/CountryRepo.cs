@@ -43,8 +43,8 @@ namespace MVCPersonList.Models.Repo
 
         public List<Country> Read()
         {
-            return _personListDbContext.Cities.Include(row => row.PersonInQuestion).ToList();   //    !!! This can be messy (many to many ==> infinite loop)
-            // return _personListDbContext.Cities.ToList();                    // Go to the database and get all the cities and convert it to a list
+            return _personListDbContext.Cities.Include(country => country.PersonInQuestion).ToList();   //    !!! This can be messy (many to many ==> infinite loop)
+            //     return _personListDbContext.Cities.ToList();                    // Go to the database and get all the cities and convert it to a list
         }
 
         public Country Update(Country country)
