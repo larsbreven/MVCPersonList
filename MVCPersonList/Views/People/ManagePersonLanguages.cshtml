@@ -1,4 +1,4 @@
-﻿@model Person
+﻿@model PersonLanguagesVM
 @{
     ViewData["Title"] = "Manage Car Insurances";
 }
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-6">
         <ul>
-            @foreach (var item in Model.PersonLanguages)
+            @foreach (var item in Model.Person.PersonLanguages)
             {
                 <li>
                     @item.Language.Name 
@@ -25,6 +25,13 @@
         </ul>
     </div>
     <div class="col-6">
-        
+        <ul>
+            @foreach (var item in Model.Languages)
+            {
+                <li>
+                    @item.Name @Html.ActionLink("Add", "AddLanguageToPerson", "Person", new { personId = Model.Person.Id, languageId = item.Id })
+                </li>
+            }
+        </ul>
     </div>
 </div>

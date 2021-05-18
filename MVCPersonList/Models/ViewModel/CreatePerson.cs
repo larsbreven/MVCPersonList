@@ -24,7 +24,6 @@ namespace MVCPersonList.Models.ViewModel
        
         public List<String> CityList { get; set; }
 
-
         public CreatePerson(IPersonGroupRepo personGroupRepo)
         {
             CityList = new List<String>();

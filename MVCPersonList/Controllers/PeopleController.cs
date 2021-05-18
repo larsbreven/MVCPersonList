@@ -14,11 +14,13 @@ namespace MVCPersonList.Controllers
     {
 
         IPeopleService _peopleService;
+        private readonly ILanguageService _languageService;
         private readonly IPersonGroupRepo _personGroupRepo;
 
-        public PeopleController(IPeopleService peopleService, IPersonGroupRepo personGroupRepo)           // Constructor dependency injection
+        public PeopleController(IPeopleService peopleService, ILanguageService languageService, IPersonGroupRepo personGroupRepo)           // Constructor dependency injection
         {
             _peopleService = peopleService;
+            _languageService = languageService;
             _personGroupRepo = personGroupRepo;
         }
 
@@ -86,11 +88,32 @@ namespace MVCPersonList.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            PersonLanguagesVM vm = new PersonLanguagesVM();
+            vm.Person = person;
+            vm.Languages = _languageService.All();
+
+            return View(vm);
         }
 
+        [HttpGet]
+        public IActionResult AddLanguageToPerson(int personId, int languageId)  //  personId and languageId is needed for the binding
+        {
+            Person person = _peopleService.FindById(personId);
 
+            if (person == null)
+            {
+                return RedirectToAction("Index");
+            }
 
+            PersonLanguagesVM vm = new PersonLanguagesVM();
+            vm.Person = person;
+
+            person.PersonLanguages.Add(new PersonLanguage() { PersonId = personId, LanguageId = languageId });
+                        
+            vm.Languages = _languageService.All();
+
+            return View(vm);
+        }
 
         [HttpGet]
         public IActionResult Edit(int id)
