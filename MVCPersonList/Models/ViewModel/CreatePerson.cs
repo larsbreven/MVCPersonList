@@ -16,12 +16,12 @@ namespace MVCPersonList.Models.ViewModel
 
         [Required]                                      // City is required to type in when creating a person
         [StringLength(100, MinimumLength = 2)]
-        public int CityId { get; set; }
+        public int InCityId { get; set; }
 
-                                                        // Phone is required to type in when creating a person
+        // Phone is required to type in when creating a person
         [StringLength(25, MinimumLength = 2)]
         public string Phone { get; set; }
-       
+
         public List<String> CityList { get; set; }
 
         public CreatePerson(IPersonGroupRepo personGroupRepo)

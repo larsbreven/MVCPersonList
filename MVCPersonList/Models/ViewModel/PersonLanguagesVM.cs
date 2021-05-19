@@ -8,7 +8,7 @@ namespace MVCPersonList.Models.ViewModel
 {
     public class PersonLanguagesVM
     {
-        public Person Person { get; set; }              
+        public Person Person { get; set; }
 
         public List<Language> Languages { get; set; }   // The list will have the languages the person don't have
     }
