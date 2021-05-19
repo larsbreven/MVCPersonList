@@ -15,12 +15,14 @@ namespace MVCPersonList.Controllers
 
         IPeopleService _peopleService;
         private readonly ILanguageService _languageService;
+        private readonly IPersonLanguageRepo _personLanguageRepo;
         private readonly IPersonGroupRepo _personGroupRepo;
 
-        public PeopleController(IPeopleService peopleService, ILanguageService languageService, IPersonGroupRepo personGroupRepo)           // Constructor dependency injection
+        public PeopleController(IPeopleService peopleService, ILanguageService languageService, IPersonLanguageRepo personLanguageRepo, IPersonGroupRepo personGroupRepo)           // Constructor dependency injection
         {
             _peopleService = peopleService;
             _languageService = languageService;
+            _personLanguageRepo = personLanguageRepo;
             _personGroupRepo = personGroupRepo;
         }
 
@@ -34,17 +36,17 @@ namespace MVCPersonList.Controllers
         public IActionResult Index(PersonIndex indexViewModel) // Normally shows all filtered persons here
         {
             indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
-         
+
             return View(indexViewModel);                                // Returns an indexViewModel
         }
-            
-        
+
+
         [HttpGet]
         public IActionResult Create()
         {
             return View(new CreatePerson(_personGroupRepo));
         }
-        
+
         [HttpPost]
         public IActionResult Create(CreatePerson createPerson)
         {
@@ -61,8 +63,8 @@ namespace MVCPersonList.Controllers
 
 
             return View("Index", personIndexView);              // If a person is not properly created it will return back to the same view
-        
-            
+
+
         }
 
 
@@ -105,15 +107,31 @@ namespace MVCPersonList.Controllers
                 return RedirectToAction("Index");
             }
 
-            PersonLanguagesVM vm = new PersonLanguagesVM();
-            vm.Person = person;
+            PersonLanguage personLanguage = _personLanguageRepo.Create(
+                new PersonLanguage() { PersonId = personId, LanguageId = languageId }
+                );
 
-            person.PersonLanguages.Add(new PersonLanguage() { PersonId = personId, LanguageId = languageId });
-                        
-            vm.Languages = _languageService.All();
 
-            return View(vm);
+            return RedirectToAction("ManagePersonLanguages", new { id = personId });
         }
+
+        [HttpGet]
+        public IActionResult RemoveLanguageToPerson(int personId, int languageId)  //  personId and languageId is needed for the binding
+        {
+            Person person = _peopleService.FindById(personId);
+
+            if (person == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            _personLanguageRepo.Delete(personId, languageId);
+
+            return RedirectToAction("ManagePersonLanguages", new { id = personId });
+        }
+
+
+
 
         [HttpGet]
         public IActionResult Edit(int id)

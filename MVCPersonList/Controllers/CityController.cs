@@ -50,10 +50,10 @@ namespace MVCPersonList.Controllers
         }
 
         // POST: CityController/Create
-        
+
         public IActionResult Create(CreateCity createCity)       // This is the second to be called
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _cityService.Add(createCity);
                 return RedirectToAction(nameof(Index));
@@ -64,6 +64,6 @@ namespace MVCPersonList.Controllers
             }
         }
 
-      
+
     }
 }

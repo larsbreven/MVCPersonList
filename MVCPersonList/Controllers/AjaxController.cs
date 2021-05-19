@@ -55,7 +55,7 @@ namespace MVCPersonList.Controllers
             }
 
             return PartialView("_APersonRowPartialView", person);       // Return a partial view
-                       
+
         }
 
         public IActionResult Delete(int id)

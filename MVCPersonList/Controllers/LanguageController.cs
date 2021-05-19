@@ -41,7 +41,7 @@ namespace MVCPersonList.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateLanguage createLanguage)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _languageService.Add(createLanguage);
                 return RedirectToAction(nameof(Index));
