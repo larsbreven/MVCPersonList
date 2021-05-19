@@ -18,19 +18,29 @@ namespace MVCPersonList.Database
         {
             modelBuilder.Entity<PersonLanguage>().HasKey(pl =>
             new {
-                pl.PersonId,                            
-                pl.LanguageId                                  
+                pl.PersonId,
+                pl.LanguageId
             });
 
-            modelBuilder.Entity<PersonLanguage>()       
+            //modelBuilder.Entity<City>()
+            //    .HasMany(c => c.PersonsInCity)
+            //    .WithOne(p => p.InCity)
+            //    .HasForeignKey(p => p.InCityId);
+
+            //modelBuilder.Entity<Person>()
+            //    .HasOne<City>(p => p.InCity)
+            //    .WithMany(c => c.PersonsInCity);
+
+
+            modelBuilder.Entity<PersonLanguage>()
                 .HasOne<Person>(pl => pl.Person)        // pl = PersonLanguage  
-                .WithMany(p => p.PersonLanguage)        // p = Person
+                .WithMany(p => p.PersonLanguages)        // p = Person
                 .HasForeignKey(pl => pl.PersonId);      // l = Language
 
-            modelBuilder.Entity<PersonLanguage>()       
-                .HasOne<Language>(pl => pl.Language)     
-                .WithMany(l => l.PersonLanguage)         
-                .HasForeignKey(pl => pl.LanguageId);    
+            modelBuilder.Entity<PersonLanguage>()
+                .HasOne<Language>(pl => pl.Language)
+                .WithMany(l => l.PersonLanguage)
+                .HasForeignKey(pl => pl.LanguageId);
 
         }
 
