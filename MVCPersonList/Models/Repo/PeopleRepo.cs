@@ -14,7 +14,7 @@ namespace MVCPersonList.Models.Repo
 
         public PeopleRepo(PersonListDbContext personListDbContext)  // This is the connection to the database
         {
-            this.personListDbContext = personListDbContext;   
+            this.personListDbContext = personListDbContext;
         }
 
 
@@ -38,8 +38,8 @@ namespace MVCPersonList.Models.Repo
         }
 
         public Person Read(int id)                                          // When one person is read ("id"), the PersonHistory is included
-        {                                   
-            return personListDbContext.People.Include(Person => Person.PersonHistory)
+        {
+            return personListDbContext.People.Include(Person => Person.InCity)
                                              .Include(person => person.PersonLanguages)
                                              .ThenInclude(perLan => perLan.Language)
                                              .SingleOrDefault(row => row.Id == id); // If not found return null

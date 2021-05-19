@@ -7,7 +7,7 @@ using MVCPersonList.Models.Repo;
 
 namespace MVCPersonList.Models.Repo
 {
-    interface ICountryRepo
+    public interface ICountryRepo
     {
         // Create, read, update or delete a country (C.R.U.D)
 

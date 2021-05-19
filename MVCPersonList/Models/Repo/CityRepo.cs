@@ -21,11 +21,11 @@ namespace MVCPersonList.Models.Repo
 
         public City Create(City city)
         {
-            _personListDbContext.Cities.Add(city);                          
+            _personListDbContext.Cities.Add(city);
 
             int result = _personListDbContext.SaveChanges();
 
-            if(result == 0)
+            if (result == 0)
             {
                 return null;                                                // Not saved correctly in the database
             }
@@ -41,7 +41,7 @@ namespace MVCPersonList.Models.Repo
 
         public List<City> Read()
         {
-            return _personListDbContext.Cities.Include( city => city.Country).ToList();   // This will include the country with all cities    !!! This can be messy (many to many ==> infinite loop)
+            return _personListDbContext.Cities.Include(city => city.Country).ToList();   // This will include the country with all cities    !!! This can be messy (many to many ==> infinite loop)
             // return _personListDbContext.Cities.ToList();                    // Go to the database and get all the cities and convert it to a list
         }
 
@@ -49,7 +49,7 @@ namespace MVCPersonList.Models.Repo
         {
             City originCity = Read(city.Id);
 
-            if(originCity == null)
+            if (originCity == null)
             {
                 return null;
             }
@@ -65,7 +65,7 @@ namespace MVCPersonList.Models.Repo
             }
 
 
-            return originCity; 
+            return originCity;
         }
 
 

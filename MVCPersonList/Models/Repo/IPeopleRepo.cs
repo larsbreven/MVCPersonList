@@ -8,7 +8,7 @@ namespace MVCPersonList.Models.Repo
 {
     public interface IPeopleRepo
     {
-                                            // Create, read, update or delete a person (C.R.U.D)
+        // Create, read, update or delete a person (C.R.U.D)
 
         Person Create(Person person);       // Create one person       
 
