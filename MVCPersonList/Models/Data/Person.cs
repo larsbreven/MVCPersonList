@@ -15,11 +15,11 @@ namespace MVCPersonList.Models.Data                     // Namespace must reflec
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-              
-        [ForeignKey("InCity")]
+
         [MaxLength(100)]
         public City InCity { get; set; }
 
+        [ForeignKey("InCity")]
         public int InCityId { get; set; }
 
 
@@ -28,7 +28,7 @@ namespace MVCPersonList.Models.Data                     // Namespace must reflec
 
         // "Many" in the "Many to one - expression"
 
-        public List<City> PersonHistory { get; set; }       // Navigational property ==> Possible to navigate from Person to City to another City-object
+        //public List<City> PersonHistory { get; set; }       // Navigational property ==> Possible to navigate from Person to City to another City-object
 
         // Many to many, join table
         public List<PersonLanguage> PersonLanguages { get; set; }    // List of the language per person

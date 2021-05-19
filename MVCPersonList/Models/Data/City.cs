@@ -15,8 +15,9 @@ namespace MVCPersonList.Models.Data
         [MaxLength(60)]
         public string CityName { get; set; }
 
-        public List<Person> PersonsInCity { get; set; }   
 
-        public Country Country { get; set; }           
+        public List<Person> PersonsInCity { get; set; }
+
+        public Country Country { get; set; }
     }
 }
