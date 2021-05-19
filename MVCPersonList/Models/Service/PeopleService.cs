@@ -13,7 +13,7 @@ namespace MVCPersonList.Models.Service
         IPeopleRepo _peopleRepo;                             // Storage for person data
         IPersonGroupRepo _personGroupRepo;
 
-        public PeopleService(IPeopleRepo peopleRepo, IPersonGroupRepo _personGroupRepo)
+        public PeopleService(IPeopleRepo peopleRepo, IPersonGroupRepo personGroupRepo)
         {
             _peopleRepo = peopleRepo;
             _personGroupRepo = personGroupRepo;
@@ -24,7 +24,7 @@ namespace MVCPersonList.Models.Service
             Person person = new Person();
 
             person.Name = createPerson.Name;
-            person.City = createPerson.City;
+            person.InCityId = createPerson.InCityId;
             person.Phone = createPerson.Phone;
 
             person = _peopleRepo.Create(person);
@@ -73,7 +73,7 @@ namespace MVCPersonList.Models.Service
             }
 
             originPerson.Name = person.Name;
-            originPerson.City = person.City;
+            originPerson.InCityId = person.InCityId;
             originPerson.Phone = person.Phone;
 
             originPerson = _peopleRepo.Update(originPerson);
@@ -91,7 +91,7 @@ namespace MVCPersonList.Models.Service
             CreatePerson createPerson = new CreatePerson(_personGroupRepo);
 
             createPerson.Name = person.Name;
-            createPerson.City = person.City;
+            createPerson.InCityId = person.InCityId;
             createPerson.Phone = person.Phone;
 
             return createPerson;

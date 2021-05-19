@@ -33,13 +33,13 @@ namespace MVCPersonList.Models.Service
             return _countryRepo.Read();
         }
 
-        public Country FindbyId(int id)
+        public Country FindById(int id)
         {
             return _countryRepo.Read(id);
         }
         public Country Edit(int id, CreateCountry country)
         {
-            Country originCountry = FindbyId(id);
+            Country originCountry = FindById(id);
             if (originCountry == null)
             {
                 return null;
@@ -56,6 +56,6 @@ namespace MVCPersonList.Models.Service
             return _countryRepo.Delete(id);
         }
 
-        
+
     }
 }

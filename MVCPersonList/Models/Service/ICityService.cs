@@ -14,7 +14,7 @@ namespace MVCPersonList.Models.Service
         City FindById(int id);                              // Possible to add more methods in the service layer    
 
         //List<City> FindByCityId(int cityId);              // Find all cities that have the Id of ?? City eller Person
-        
+
         City Edit(int id, CreateCity city);               // "Update"
         CreateCity CityToCreateCity(City city);
         bool Remove(int id);                                // "Delete"
