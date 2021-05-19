@@ -1,7 +1,5 @@
 ﻿@model List<Country>
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
 <h1>Country</h1>
 
@@ -17,11 +15,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.CountryName</td>
-                <td></td>
-            </tr>
-        }
+<tr>
+    <td>@item.CountryName</td>
+    <td></td>
+</tr>}
 
     </tbody>
 </table>

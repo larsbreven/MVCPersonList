@@ -1,11 +1,9 @@
 ﻿@model List<City>
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
 <h1>Index</h1>
 
-<a asp-action="Create" >Create city</a>
+<a asp-action="Create">Create city</a>
 
 <table>
     <thead>
@@ -18,11 +16,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.CityName</td>
-                <td>@item.Country == null ? "No Country" : item.Country.CountryName)</td> <!-- If the country is not null the CountryName will be used -->
-            </tr>
-        }
+<tr>
+    <td>@item.CityName</td>
+    <td>@item.Country == null ? "No Country" : item.Country.CountryName)</td> <!-- If the country is not null the CountryName will be used -->
+</tr>}
 
     </tbody>
 </table>

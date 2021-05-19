@@ -1,7 +1,5 @@
 ﻿@model Person
-@{
-    ViewData["Title"] = "Details";
-}
+@{ ViewData["Title"] = "Details"; }
 
 <h1>Details</h1>
 
@@ -9,7 +7,7 @@
     <dt>Name</dt>
     <dd>@Model.Name</dd>
     <dt>City</dt>
-    <dd>@Model.City</dd>
+    <dd>@Model.InCity.CityName</dd>
     <dt>Phone</dt>
     <dd>@Model.Phone</dd>
     <dt>Action:</dt>
@@ -20,14 +18,14 @@
     </dd>
 </dl>
 
-<table>
-        <thead>
-            <tr>City</tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.PersonHistory)
-            {
-                @item.CityName
-            }
-        </tbody>
-</table>
+@*<table>
+            <thead>
+                <tr>City</tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PersonHistory)
+                {
+                    @item.CityName
+                }
+            </tbody>
+    </table>*@

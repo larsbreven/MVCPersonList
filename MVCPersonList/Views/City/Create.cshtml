@@ -1,7 +1,5 @@
 ﻿@model CreateCity
-@{
-    ViewData["Title"] = "Create City";
-}
+@{ ViewData["Title"] = "Create City"; }
 
 <h1>Create</h1>
 
@@ -12,10 +10,9 @@
 
     <label asp-for="CountryId"></label>
     <select asp-for="CountryId">
-        @foreach (var item in Model.CityList)
+        @foreach (var item in Model.CountryList)
         {
-            <option value="@item.Id"></option>
-        }
+<option value="@item.Id"></option>}
     </select>
     <span asp-validation-for="CountryId"></span>
 

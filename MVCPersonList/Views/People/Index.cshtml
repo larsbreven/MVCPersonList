@@ -1,7 +1,5 @@
 ﻿@model PersonIndex
-@{
-    ViewData["Title"] = "Person Index";
-}
+@{ ViewData["Title"] = "Person Index"; }
 
 <h1>Index</h1>
 
@@ -12,9 +10,9 @@
     <input asp-for="CreatePerson.Name">
     <span asp-validation-for="CreatePerson.Name"></span>
 
-    <label asp-for="CreatePerson.City"></label>
-    <input asp-for="CreatePerson.City" />
-    <span asp-validation-for="CreatePerson.City"></span>
+    <label asp-for="CreatePerson.InCityId"></label>
+    <input asp-for="CreatePerson.InCityId" />
+    <span asp-validation-for="CreatePerson.InCityId"></span>
 
     <label asp-for="CreatePerson.Phone"></label>
     <input asp-for="CreatePerson.Phone" />
@@ -31,7 +29,7 @@
     <input type="submit" value="Filter by name" />
 </form>
 
-    @*<table>                   -------------------------------         First version         ---------------------------------------------------
+@*<table>                   -------------------------------         First version         ---------------------------------------------------
         <thead>
             <tr>
                 <th>Name</th>
@@ -87,25 +85,19 @@
 
         @foreach (var item in Model.PersonList)
         {
-            <partial name="_APersonRowPartialView" model="item" />
-            <!--<div class="row">-->  <!-- Everything that is comment out is transfered to the above "partial name"-->
-                <!-- Name -->
-                <!--<div class="col-4">
-                    <p>@item.Name</p>
-                </div>-->
-                <!-- City -->
-                <!--<div class="col-4">
-                    <p>@item.City</p>
-                </div>-->
-                <!-- Phone -->
-                <!--<div class="col-2">
-                    <p>@item.Phone</p>
-                </div>-->
-                <!-- Action -->
-                <!--<div class="col-2">
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
-                </div>
-            </div>-->
-        }
+<partial name="_APersonRowPartialView" model="item" /> <!--<div class="row">--> <!-- Everything that is comment out is transfered to the above "partial name"--> <!-- Name -->
+                                                <!--<div class="col-4">
+                                                    <p>@item.Name</p>
+                                                </div>--> <!-- City -->
+                                                                                <!--<div class="col-4">
+                                                                                    <p>@item.InCityId</p>
+                                                                                </div>--> <!-- Phone -->
+                                                                                                                <!--<div class="col-2">
+                                                                                                                    <p>@item.Phone</p>
+                                                                                                                </div>--> <!-- Action -->
+                                                                                                                                                <!--<div class="col-2">
+                                                                                                                                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>-->}
     </div>
 </div>

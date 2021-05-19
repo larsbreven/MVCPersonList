@@ -1,7 +1,5 @@
 ﻿@model Person
-@{
-    ViewData["Title"] = "Home Page";
-}
+@{ ViewData["Title"] = "Home Page"; }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -11,13 +9,11 @@
 
 @if (Model != null)                                         // Check if there is a new (last) added person in the list
 {
-    <div class="row">
-        <div class="col-4">
-            <h3>Last person added in the register</h3>
-        </div>
-        <div class="8">
-                <partial name="_APersonRowPartialView" model="Model" /> <!-- Person -->
-        </div>
+<div class="row">
+    <div class="col-4">
+        <h3>Last person added in the register</h3>
     </div>
-
-}
+    <div class="8">
+        <partial name="_APersonRowPartialView" model="Model" /> <!-- Person -->
+    </div>
+</div>}
