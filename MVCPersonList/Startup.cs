@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +34,11 @@ namespace MVCPersonList
             // -------------------------------------------------- Connection to database --------------------------------------------------
             services.AddDbContext<PersonListDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // -------------------------------------------------- Connection to database --------------------------------------------------
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<PersonListDbContext>()
+                .AddDefaultTokenProviders();                                    // This one can be replaced with jbt-token in React
 
             // --------------------------------------- Services Inversion of Control ------------------------------------------------------
             services.AddScoped<IPeopleService, PeopleService>();
@@ -72,7 +78,8 @@ namespace MVCPersonList
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();                        // Are you logged in?
+            app.UseAuthorization();                         // Do you have the right to log in?
 
             app.UseEndpoints(endpoints =>
             {

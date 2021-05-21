@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;                    // Needed for DbContext
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCPersonList.Models.Data;
 
+
 namespace MVCPersonList.Database
 {
-    public class PersonListDbContext : DbContext        // This is the connection to the database              
+    public class PersonListDbContext : IdentityDbContext<IdentityUser>        // This is the connection to the database              
     {
 
         public PersonListDbContext(DbContextOptions<PersonListDbContext> options) : base(options)
@@ -16,6 +19,8 @@ namespace MVCPersonList.Database
         //Join table configured using Fluent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);     // Recommended to be at the first line inside the method to make IdentityDbContext working properly
+            
             modelBuilder.Entity<PersonLanguage>().HasKey(pl =>
             new {
                 pl.PersonId,
