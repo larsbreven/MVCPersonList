@@ -29,6 +29,13 @@ namespace MVCPersonList.Controllers
             return View();
         }
 
+       
+        public IActionResult AccessDenied()
+        {
+            
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(UserRegistVM userRegist)

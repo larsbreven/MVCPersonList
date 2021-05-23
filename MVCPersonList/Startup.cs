@@ -35,10 +35,15 @@ namespace MVCPersonList
             services.AddDbContext<PersonListDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // -------------------------------------------------- Connection to database --------------------------------------------------
+            // -------------------------------------------------- Identity ----------------------------------------------------------------
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<PersonListDbContext>()
                 .AddDefaultTokenProviders();                                    // This one can be replaced with jbt-token in React
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Account/AccessDenied";
+            });
 
             // --------------------------------------- Services Inversion of Control ------------------------------------------------------
             services.AddScoped<IPeopleService, PeopleService>();

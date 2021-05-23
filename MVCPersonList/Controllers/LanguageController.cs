@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MVCPersonList.Models.Service;
 using MVCPersonList.Models.ViewModel;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVCPersonList.Controllers
 {
+    // [Authorize(Roles = "Admin, White collar")]          // Restricted access
     public class LanguageController : Controller
     {
         private readonly ILanguageService _languageService;
