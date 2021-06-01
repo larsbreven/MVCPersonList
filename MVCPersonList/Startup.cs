@@ -60,6 +60,21 @@ namespace MVCPersonList
             services.AddScoped<ILanguageRepo, LanguageRepo>();                  // Database version PersonGroupRepo
             services.AddScoped<IPersonLanguageRepo, PersonLanguageRepo>();      // Database version PersonLanguageGroupRepo
 
+            // ----------------------------------------------------- CORS -----------------------------------------------------------------
+
+            services.AddCors(options =>
+            {
+
+                options.AddPolicy("ReactPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("*")// "*" is like saying any and all are okay
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
+
+
             // services.AddMVC() is used instead of this: services.AddControllersWithViews();
             services.AddMvc();
 
@@ -82,6 +97,8 @@ namespace MVCPersonList
             app.UseStaticFiles();                           // The static files in www.root including bootstrap and favicon
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();                        // Are you logged in?
             app.UseAuthorization();                         // Do you have the right to log in?
