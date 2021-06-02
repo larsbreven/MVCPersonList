@@ -74,8 +74,11 @@ namespace MVCPersonList
                     });
             });
 
+            // ---------------------------------------------------- Swagger -----------------------------------------------------------------
 
-            // services.AddMVC() is used instead of this: services.AddControllersWithViews();
+            services.AddSwaggerGen();
+
+                       // services.AddMVC() is used instead of this: services.AddControllersWithViews();
             services.AddMvc();
 
         }
@@ -95,6 +98,18 @@ namespace MVCPersonList
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();                           // The static files in www.root including bootstrap and favicon
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Person API V1");
+            });
+
+
+
 
             app.UseRouting();
 

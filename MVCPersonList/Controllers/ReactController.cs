@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVCPersonList.Controllers
 {
+    [EnableCors("ReactPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class ReactController : ControllerBase
@@ -20,8 +21,6 @@ namespace MVCPersonList.Controllers
         {
             _peopleService = peopleService;
         }
-
-        [EnableCors("ReactPolicy")]
 
         [HttpGet]
         public List<Person> Get()
