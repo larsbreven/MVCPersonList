@@ -34,7 +34,24 @@ namespace MVCPersonList.Models.Repo
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Person person = Read(id);
+
+            if (person == null)
+            {
+                return false;
+            }
+
+            personListDbContext.People.Remove(person);
+
+            int result = personListDbContext.SaveChanges();
+
+            if (result == 0)                                                // No changes in the database
+            {
+                return false;
+            }
+
+            return true;                                                    // A person is succesfully deleted
+
         }
 
         public Person Read(int id)                                          // When one person is read ("id"), the PersonHistory is included
