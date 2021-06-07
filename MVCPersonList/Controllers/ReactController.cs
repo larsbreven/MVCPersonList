@@ -33,7 +33,9 @@ namespace MVCPersonList.Controllers
         [HttpGet("{id}")]                   // If there is an id included, this method will be executed, not the above                        
         public Person GetById(int id)
         {
-            return _peopleService.FindById(id);
+            Person person = _peopleService.FindById(id);
+                        
+            return person;
         }
 
         [HttpPost]                                           

@@ -9,43 +9,60 @@ namespace MVCPersonList.Database
 {
     public class DbInitializer
     {
-        public static void Initialize(
+        public static void Initialize(                          // Update the database
             PersonListDbContext context,
             RoleManager<IdentityRole> roleManager,
             UserManager<IdentityUser> userManager
             )
         {
-            //context.Database.EnsureCreated();
-            //If not using EF migrations
-            context.Database.Migrate();
+            //context.Database.EnsureCreated();                 // If not using Entity Framework migrations
+            context.Database.Migrate();                         // If using Entity Framework Migrations
 
-            if (context.Roles.Any())
+            if (context.Roles.Any())                            // Check if there are any roles in the datatable => if there are no roles the database is empty
             {
-                return;             // Assume that the database is seeded because there are roles in it
+                return;                                         // Assume that the database is seeded because there are roles in it
             }
 
-            // ------------------------------ Seed into database ------------------------------------------------------
+            // --------------------------------------- All roles and codes below are to be seed into the database ------------------------------------------------------
+            // -------------------------------- It is also possible to add in example data for the testing and development phase-----------------------------------
+    
 
-            string roleAdmin = "Admin";
+            string[] rolesToSeed = new string[] { "Admin", "HumanResources" , "Client" };
 
-            IdentityRole role = new IdentityRole(roleAdmin);
-
-            var result = roleManager.CreateAsync(role).Result;
-
-            if ( ! result.Succeeded)
+            foreach ( var roleName in rolesToSeed)
             {
-                throw new Exception("Failed to create role" + roleAdmin);
+                string roleAdmin = "Admin";
+
+                IdentityRole role = new IdentityRole(roleAdmin);
+
+                var result = roleManager.CreateAsync(role).Result;
+
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Failed to create role" + roleAdmin);
+                }
+
             }
 
-            string roleHumanResources = "HumanResources";
-
-            IdentityRole roleHR = new IdentityRole(roleHumanResources);
-
-            result = roleManager.CreateAsync(roleHR).Result;
-
-            if (!result.Succeeded)
+            IdentityUser user = new IdentityUser()
             {
-                throw new Exception("Failed to create role" + roleHumanResources);
+                UserName = "AdminPower",
+                Email = "a@a.a",
+                PhoneNumber = "987654321"
+            };
+
+            IdentityResult resultUser = userManager.CreateAsync(user, "Qwerty!23456").Result;        // Be careful = This is a test password, can be visible for everyone
+
+            if (!resultUser.Succeeded)
+            {
+                throw new Exception("Failed to create Admin Acc: AdminPower");
+            }
+
+            IdentityResult resultAssign = userManager.AddToRoleAsync(user, rolesToSeed[0]).Result;
+
+            if (!resultAssign.Succeeded)
+            {
+                throw new Exception($"Failed to grant {rolesToSeed[0]} role to AdminPower");
             }
 
         }
