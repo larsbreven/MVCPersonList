@@ -12,7 +12,7 @@ namespace MVCPersonList.Models.Repo
     {
         private readonly PersonListDbContext personListDbContext;           // Dependency of injection
 
-        public PeopleRepo(PersonListDbContext personListDbContext)  // This is the connection to the database
+        public PeopleRepo(PersonListDbContext personListDbContext)          // This is the connection to the database
         {
             this.personListDbContext = personListDbContext;
         }
@@ -32,7 +32,45 @@ namespace MVCPersonList.Models.Repo
             return person;                                                  // A person is succesfully created
         }
 
-        public bool Delete(int id)
+
+        public Person Read(int id)                                          // When one person is read ("id"), the PersonHistory is included
+        {
+            return personListDbContext.People.Include(Person => Person.InCity)
+                                             .Include(person => person.PersonLanguages)
+                                             .ThenInclude(perLan => perLan.Language)
+                                             .SingleOrDefault(row => row.Id == id); // If not found return null
+        }
+        public List<Person> Read()
+        {
+            return personListDbContext.People.ToList();
+        }
+
+
+        public Person Update(Person person)
+        {
+            Person originPerson = Read(person.Id);
+
+            if (originPerson == null)
+            {
+                return null;
+            }
+
+            personListDbContext.Update(person);                              // Transfer the data
+            //originCity.CountryName = country.CountryName;                  // Same command as the simplified version above
+
+            int result = personListDbContext.SaveChanges();
+
+            if (result == 0)                                                // Check if data is saved
+            {
+                return null;
+            }
+
+
+            return originPerson;
+        }
+
+
+    /*    public bool Delete(int id)
         {
             Person person = Read(id);
 
@@ -52,24 +90,35 @@ namespace MVCPersonList.Models.Repo
 
             return true;                                                    // A person is succesfully deleted
 
+        } */
+
+        public bool Delete(int id)
+        {
+
+            Person originPerson = Read(id);
+
+            if (originPerson == null)                             // The id was not correct
+            {
+                return false;
+            }
+
+            personListDbContext.People.Remove(originPerson);
+
+            int result = personListDbContext.SaveChanges();
+
+            if (result == 0)
+            {
+                return false;
+            }
+
+            return true;
+
         }
 
-        public Person Read(int id)                                          // When one person is read ("id"), the PersonHistory is included
-        {
-            return personListDbContext.People.Include(Person => Person.InCity)
-                                             .Include(person => person.PersonLanguages)
-                                             .ThenInclude(perLan => perLan.Language)
-                                             .SingleOrDefault(row => row.Id == id); // If not found return null
-        }
 
-        public List<Person> Read()
-        {
-            return personListDbContext.People.ToList();
-        }
 
-        public Person Update(Person person)
-        {
-            throw new NotImplementedException();
-        }
+
+
+
     }
 }
