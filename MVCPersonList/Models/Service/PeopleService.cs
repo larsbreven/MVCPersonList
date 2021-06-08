@@ -12,11 +12,13 @@ namespace MVCPersonList.Models.Service
     {
         IPeopleRepo _peopleRepo;                             // Storage for person data
         IPersonGroupRepo _personGroupRepo;
+        ICityService _cityService;
 
-        public PeopleService(IPeopleRepo peopleRepo, IPersonGroupRepo personGroupRepo)
+        public PeopleService(IPeopleRepo peopleRepo, IPersonGroupRepo personGroupRepo, ICityService cityService)
         {
             _peopleRepo = peopleRepo;
             _personGroupRepo = personGroupRepo;
+            _cityService = cityService;
         }
 
         public Person Add(CreatePerson createPerson)        // Service will do the conversion
@@ -88,7 +90,7 @@ namespace MVCPersonList.Models.Service
 
         public CreatePerson PersonToCreatePerson(Person person)
         {
-            CreatePerson createPerson = new CreatePerson(_personGroupRepo);
+            CreatePerson createPerson = new CreatePerson(_cityService);
 
             createPerson.Name = person.Name;
             createPerson.InCityId = person.InCityId;

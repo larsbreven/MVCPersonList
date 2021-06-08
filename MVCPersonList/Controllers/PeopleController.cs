@@ -17,13 +17,19 @@ namespace MVCPersonList.Controllers
         private readonly ILanguageService _languageService;
         private readonly IPersonLanguageRepo _personLanguageRepo;
         private readonly IPersonGroupRepo _personGroupRepo;
+        private readonly ICityService _cityService;
 
-        public PeopleController(IPeopleService peopleService, ILanguageService languageService, IPersonLanguageRepo personLanguageRepo, IPersonGroupRepo personGroupRepo)           // Constructor dependency injection
+        public PeopleController(IPeopleService peopleService,                       // Constructor dependency injection
+            ILanguageService languageService,
+            IPersonLanguageRepo personLanguageRepo,
+            IPersonGroupRepo personGroupRepo,
+            ICityService cityService)           
         {
             _peopleService = peopleService;
             _languageService = languageService;
             _personLanguageRepo = personLanguageRepo;
             _personGroupRepo = personGroupRepo;
+            _cityService = cityService;
         }
 
         [HttpGet]
@@ -44,7 +50,7 @@ namespace MVCPersonList.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new CreatePerson(_personGroupRepo));
+            return View(new CreatePerson(_cityService));
         }
 
         [HttpPost]

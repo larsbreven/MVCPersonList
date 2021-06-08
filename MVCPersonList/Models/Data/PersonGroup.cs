@@ -14,5 +14,8 @@ namespace MVCPersonList.Models.Data
 
         [Required]
         public string Name { get; set; }
+
+        public List<Person> PersonOrigin { get; set; }
+
     }
 }

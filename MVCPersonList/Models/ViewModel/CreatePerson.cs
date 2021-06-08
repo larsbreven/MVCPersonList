@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;            // DataAnnotations added
 using MVCPersonList.Models.Repo;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCPersonList.Models.Service;
 
 namespace MVCPersonList.Models.ViewModel
 {
@@ -15,7 +16,7 @@ namespace MVCPersonList.Models.ViewModel
         public string Name { get; set; }
 
         [Required]                                      // City is required to type in when creating a person
-        [StringLength(100, MinimumLength = 2)]
+        // [StringLength(100, MinimumLength = 2)]
         public int InCityId { get; set; }
 
         // Phone is required to type in when creating a person
@@ -24,13 +25,17 @@ namespace MVCPersonList.Models.ViewModel
 
         public List<String> CityList { get; set; }
 
-        public CreatePerson(IPersonGroupRepo personGroupRepo)
+        public CreatePerson()
+        {
+
+        }
+        public CreatePerson(ICityService cityService)
         {
             CityList = new List<String>();
 
-            foreach (var item in personGroupRepo.Read())
+            foreach (var item in cityService.All())
             {
-                CityList.Add(item.Name);
+                CityList.Add(item.CityName);
             }
         }
     }

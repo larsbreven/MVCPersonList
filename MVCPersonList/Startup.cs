@@ -68,7 +68,7 @@ namespace MVCPersonList
                 options.AddPolicy("ReactPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("*")// "*" is like saying any and all are okay
+                        builder.WithOrigins("*")                                // "*" is like saying any and all are okay
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
