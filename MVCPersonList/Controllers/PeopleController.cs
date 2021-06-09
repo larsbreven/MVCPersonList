@@ -12,8 +12,7 @@ namespace MVCPersonList.Controllers
 {
     public class PeopleController : Controller
     {
-
-        IPeopleService _peopleService;
+        private readonly IPeopleService _peopleService;
         private readonly ILanguageService _languageService;
         private readonly IPersonLanguageRepo _personLanguageRepo;
         private readonly IPersonGroupRepo _personGroupRepo;
@@ -31,7 +30,7 @@ namespace MVCPersonList.Controllers
             _personGroupRepo = personGroupRepo;
             _cityService = cityService;
         }
-
+// ----------------------------------------------------------------------------------------------------------------------------------------
         [HttpGet]
         public IActionResult Index()                                    // Normally shows all persons available here
         {
@@ -39,10 +38,9 @@ namespace MVCPersonList.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(PersonIndex indexViewModel) // Normally shows all filtered persons here
+        public IActionResult Index(PersonIndex indexViewModel)           // Normally shows all filtered persons here
         {
             indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
-
             return View(indexViewModel);                                // Returns an indexViewModel
         }
 
@@ -62,15 +60,11 @@ namespace MVCPersonList.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
             PersonIndex personIndexView = new PersonIndex();
             personIndexView.CreatePerson = createPerson;
             personIndexView.PersonList = new List<Person>();
 
-
             return View("Index", personIndexView);              // If a person is not properly created it will return back to the same view
-
-
         }
 
 
@@ -117,7 +111,6 @@ namespace MVCPersonList.Controllers
                 new PersonLanguage() { PersonId = personId, LanguageId = languageId }
                 );
 
-
             return RedirectToAction("ManagePersonLanguages", new { id = personId });
         }
 
@@ -135,9 +128,6 @@ namespace MVCPersonList.Controllers
 
             return RedirectToAction("ManagePersonLanguages", new { id = personId });
         }
-
-
-
 
         [HttpGet]
         public IActionResult Edit(int id)

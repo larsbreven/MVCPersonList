@@ -29,7 +29,7 @@ namespace MVCPersonList.Models.Repo
                 throw new Exception("Unable to create a person in the database.");
             }
 
-            return person;                                                  // A person is succesfully created
+            return person;                                                  // A person is successfully created
         }
 
 
@@ -65,21 +65,20 @@ namespace MVCPersonList.Models.Repo
                 return null;
             }
 
-
             return originPerson;
         }
+          
 
-
-    /*    public bool Delete(int id)
+        public bool Delete(int id)
         {
-            Person person = Read(id);
+            Person originPerson = Read(id);
 
-            if (person == null)
+            if (originPerson == null)                                       // The id was not correct
             {
                 return false;
             }
 
-            personListDbContext.People.Remove(person);
+            personListDbContext.People.Remove(originPerson);
 
             int result = personListDbContext.SaveChanges();
 
@@ -89,36 +88,6 @@ namespace MVCPersonList.Models.Repo
             }
 
             return true;                                                    // A person is succesfully deleted
-
-        } */
-
-        public bool Delete(int id)
-        {
-
-            Person originPerson = Read(id);
-
-            if (originPerson == null)                             // The id was not correct
-            {
-                return false;
-            }
-
-            personListDbContext.People.Remove(originPerson);
-
-            int result = personListDbContext.SaveChanges();
-
-            if (result == 0)
-            {
-                return false;
-            }
-
-            return true;
-
         }
-
-
-
-
-
-
     }
 }
