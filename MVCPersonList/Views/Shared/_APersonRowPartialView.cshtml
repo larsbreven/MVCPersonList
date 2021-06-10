@@ -6,16 +6,16 @@
         <p>@Model.Name</p>
     </div>
     <!-- City -->
-    <div class="col-4">
+    <div class="col-3">
         <p>@Model.InCityId</p>
     </div>
     <!-- Phone -->
-    <div class="col-2">
+    <div class="col-3">
         <p>@Model.Phone</p>
     </div>
     <!-- Action -->
     <div class="col-2">
-        <a asp-action="Details" asp-controller="People" asp-route-id="@Model.Id" class="btn btn-info">Details</a>
+        <a asp-action="Details" asp-controller="People" asp-route-id="@Model.Id">Details</a>
         <!-- <a asp-action="Delete" asp-route-id="@Model.Id" onclick="deletePerson(this, event)">Delete</a> -->
     </div>
 </div>

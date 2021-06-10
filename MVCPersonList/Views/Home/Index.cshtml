@@ -7,11 +7,11 @@
 
 </div>
 
-@if (Model != null)                                         // Check if there is a new (last) added person in the list
+@if (Model != null)                                         // Check if there is a new, the last added person in the list
 {
 <div class="row">
     <div class="col-4">
-        <h3>Last person added in the register</h3>
+        <h6>Last person added into the MVC PersonList</h6>
     </div>
     <div class="8">
         <partial name="_APersonRowPartialView" model="Model" /> <!-- Person -->

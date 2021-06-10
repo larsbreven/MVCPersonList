@@ -31,22 +31,22 @@ namespace MVCPersonList.Controllers
             _cityService = cityService;
         }
 // ----------------------------------------------------------------------------------------------------------------------------------------
-        [HttpGet]
+        [HttpGet]                                                       // The method will only respond to the get request
         public IActionResult Index()                                    // Normally shows all persons available here
         {
-            return View(_peopleService.All());                          // Returns a PersonIndexViewModel
+            return View(_peopleService.All());                          // Returns the created ViewResult for the response
         }
 
-        [HttpPost]
-        public IActionResult Index(PersonIndex indexViewModel)           // Normally shows all filtered persons here
+        [HttpPost]                                                      // The method will only respond to the post request
+        public IActionResult Index(PersonIndex indexViewModel)          // Normally shows all filtered persons here
         {
             indexViewModel.PersonList = _peopleService.FindByName(indexViewModel.FilterText);
             return View(indexViewModel);                                // Returns an indexViewModel
         }
 
 
-        [HttpGet]
-        public IActionResult Create()
+        [HttpGet]   
+        public IActionResult Create()                                   
         {
             return View(new CreatePerson(_cityService));
         }
