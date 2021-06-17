@@ -14,6 +14,20 @@ namespace MVCPersonList.Models.ViewModel
         public string UserName { get; set; }
 
         [Required]
+        [Display(Name = "First Name")]
+        [StringLength(30, MinimumLength = 3)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        [StringLength(30, MinimumLength = 3)]
+        public string LastName { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public string BirthDate { get; set; }
+
+        [Required]
         [EmailAddress]
         [StringLength(50, MinimumLength = 3)]
         public string Email { get; set; }
