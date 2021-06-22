@@ -29,7 +29,7 @@ namespace MVCPersonList.Models.ViewModel
 
         [Required]
         [EmailAddress]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, MinimumLength = 5)]
         public string Email { get; set; }
 
         [Phone]
